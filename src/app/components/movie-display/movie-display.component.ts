@@ -21,8 +21,6 @@ export class MovieDisplayComponent implements OnInit {
   constructor(private imbdQuery: ImdbQueryService) { }
 
   ngOnInit(): void {
-    interval(1000).subscribe(() => this.randomNumber = Math.floor(Math.random() * 1000))
-
     this.imbdQuery.queryRandomAPI().then((value: Languages[]) => this.languages = value);
   }
 

@@ -1,0 +1,17 @@
+.auth-container {
+  border: 1px solid black;
+}
+
+.pill {
+  padding: .1375rem .275rem;
+  background: rgb(223, 2, 2);
+  color: whitesmoke;
+  margin: 0 .05rem;
+  border-radius: .275rem .275rem 0 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.pill.active {
+  background-color: lighter(rgb(223, 2, 2), 15%);
+}
