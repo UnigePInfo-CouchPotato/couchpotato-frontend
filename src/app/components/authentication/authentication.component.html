@@ -1,6 +1,12 @@
 <div class="h-100 d-flex flex-column justify-content-center">
-  <div class="mx-auto auth-container d-flex flex-column">
-    <div class="mx-auto d-flex flex-row">
+  <div class="mx-auto auth-container d-flex flex-column container-fluid">
+    <div class="card card-heading">
+      <img src="../../../assets/pictures/couchpotato_avatar.png" alt="couchpotato-avatar" class="img-fluid card-img-top couchpotato-img unselectable">
+      <div class="card-body">
+        <p class="card-text text-center vw-2" id="card-title">Let's Couch Potato</p>
+      </div>
+    </div>
+    <div class="mx-auto d-flex flex-row pill-box">
       <div (click)="this.selected = true" [ngClass]="{'active': this.loginSelected}" class="pill">Login</div>
       <div (click)="this.selected = false" [ngClass]="{'active': !this.loginSelected}" class="pill">Register</div>
     </div>

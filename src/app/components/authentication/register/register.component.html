@@ -1,19 +1,34 @@
 <form [formGroup]="this.formData" class="d-flex flex-column justify-content-center">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input id="username" class="form-control" type="text" name="username" formControlName="username" placeholder="Username" required/>
+  <div class="form-group row">
+    <label for="username" class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-10">
+      <input id="username" class="form-control" type="text" name="username" formControlName="username" placeholder="Username" required/>
+      <small id="usernameHelpBlock" class="form-text text-muted">
+        Your username be at least 4 characters long.
+      </small>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control" id="email" type="text" name="email"  formControlName="email" placeholder="Email" required/>
+  <div class="form-group row">
+    <label for="email" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="email" type="text" name="email" formControlName="email" placeholder="Email" required/>
+      <small id="emailHelpBlock" class="form-text text-muted">
+        Your email must contain the special character @.
+      </small>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input class="form-control" id="password" type="password" name="password"  formControlName="password" placeholder="Password" required/>
+  <div class="form-group row">
+    <label for="password" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="password" type="password" name="password" formControlName="password" placeholder="Password" required/>
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Your password must be at least 8 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+      </small>
+    </div>
   </div>
   <button class="btn btn-primary mb-2 mx-auto" type="submit" [disabled]="this.formData.pristine || !this.formData.valid" (click)="this.onSubmit()">
-    Login
+    Register
   </button>
 </form>
