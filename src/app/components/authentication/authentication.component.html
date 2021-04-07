@@ -6,15 +6,17 @@
         <p class="card-text text-center vw-2" id="card-title">Let's Couch Potato</p>
       </div>
     </div>
-    <div class="mx-auto d-flex flex-row pill-box">
-      <div (click)="this.selected = true" [ngClass]="{'active': this.loginSelected}" class="pill">Login</div>
-      <div (click)="this.selected = false" [ngClass]="{'active': !this.loginSelected}" class="pill">Register</div>
+    <div class="card">
+      <div class="mx-auto d-flex flex-row pill-box">
+        <div (click)="this.selected = true" [ngClass]="{'active': this.loginSelected}" class="pill">Login</div>
+        <div (click)="this.selected = false" [ngClass]="{'active': !this.loginSelected}" class="pill">Register</div>
+      </div>
+      <ng-container *ngIf="this.loginSelected; else elseTemplate">
+        <app-login class="p-4"></app-login>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <app-register class="p-4"></app-register>
+      </ng-template>
     </div>
-    <ng-container *ngIf="this.loginSelected; else elseTemplate">
-      <app-login class="p-4"></app-login>
-    </ng-container>
-    <ng-template #elseTemplate>
-      <app-register class="p-4"></app-register>
-    </ng-template>
   </div>
 </div>

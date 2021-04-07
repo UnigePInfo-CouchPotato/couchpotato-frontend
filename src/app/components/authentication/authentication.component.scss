@@ -3,17 +3,16 @@
 }
 
 .couchpotato-img {
-  width: 20rem;
-  height: 20rem;
+  width: 10rem;
+  height: 10rem;
   max-width:100%;
   max-height:100%;
-  margin: 0 auto;
+  margin: .25rem auto;
   background-color: aqua;
   border-radius: 50%;
 }
 
 .unselectable {
-  user-drag: none;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
@@ -44,11 +43,29 @@
   background: rgb(223, 2, 2);
   color: whitesmoke;
   margin: 0 .05rem;
-  border-radius: .275rem .275rem 0 0;
+  border-radius: .275rem .275rem;
   user-select: none;
   cursor: pointer;
 }
 
 .pill.active {
-  background-color: lighter(rgb(223, 2, 2), 15%);
+  background-color: lighter(rgb(223, 2, 2), 30%);
+}
+
+
+@media screen and (max-width: 768px) {
+  .auth-container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: xx-large;
+  }
+
+  h2 {
+    font-size: x-large;
+  }
+
 }

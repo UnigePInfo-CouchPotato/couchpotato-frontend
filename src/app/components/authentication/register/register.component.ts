@@ -32,9 +32,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authenticationService.attemptRegistration(this.formData.get('username')?.value,
+    this.authenticationService.attemptRegistration(
+          this.formData.get('username')?.value,
           this.formData.get('email')?.value,
-          this.formData.get('password')?.value);
+          this.formData.get('password')?.value
+    );
   }
 
 }
