@@ -4,7 +4,7 @@
     <div class="col-sm-10">
       <input id="username" class="form-control" type="text" name="username" formControlName="username" placeholder="Username" required/>
       <small  id="usernameHelpBlock" class="form-text text-muted" *ngIf="formData.controls['username'].invalid && (formData.controls['username'].dirty || formData.controls['username'].touched)">
-        Your username be at least 4 characters long.
+        Your username must be at least 4 characters long.
       </small>
     </div>
   </div>
