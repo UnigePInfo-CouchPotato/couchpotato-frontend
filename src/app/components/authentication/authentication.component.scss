@@ -51,6 +51,7 @@
   background-color: lighter(rgb(223, 2, 2), 30%);
 }
 
+/*Media Queries*/
 
 @media screen and (max-width: 768px) {
   .auth-container {
@@ -66,5 +67,23 @@
   h2 {
     font-size: x-large;
   }
+}
 
+@media only screen and (max-width: 600px) {
+  #card-title {
+    font-size: small;
+    width: 50%;
+    border-radius: 8px;
+  }
+
+  .couchpotato-img {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .pill {
+    font-size: small;
+    margin-left: .25rem;
+    border-radius: .5rem .5rem;
+  }
 }

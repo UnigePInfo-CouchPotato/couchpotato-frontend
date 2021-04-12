@@ -1,0 +1,23 @@
+/*Media Queries*/
+
+@media only screen and (max-width: 600px) {
+
+  label {
+    font-size: small;
+  }
+
+  input {
+    font-size: small;
+  }
+
+  .input-group-text {
+    font-size: x-small;
+  }
+
+  .btn-primary {
+    margin-top: 10px;
+    font-size: small;
+    width: 50%;
+    border-radius: 10px;
+  }
+}
