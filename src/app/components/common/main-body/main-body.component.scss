@@ -1,0 +1,31 @@
+.main-body {
+  height: 90vh;
+}
+
+.header-wrap {
+  width: 100%;
+}
+
+.couchpotato-logo {
+  height: 3rem;
+  width: 3rem;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
