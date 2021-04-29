@@ -38,24 +38,31 @@
 }
 
 .pill {
-  padding: .1375rem .275rem;
   background: rgb(223, 2, 2);
   color: whitesmoke;
-  margin: 0 .05rem;
+  padding: .5rem !important;
   border-radius: .275rem .275rem;
   user-select: none;
   cursor: pointer;
 }
 
 .pill.active {
-  background-color: lighter(rgb(223, 2, 2), 30%);
+  background-color: darken(rgb(223, 2, 2), 10%);
 }
 
 /*Media Queries*/
 
 @media screen and (max-width: 768px) {
   .auth-container {
-    width: 90%;
+    width: 95%;
+  }
+
+  .pill {
+    padding: 1.5rem !important;
+  }
+
+  .pill, #card-title {
+    font-size: medium !important;
   }
 }
 

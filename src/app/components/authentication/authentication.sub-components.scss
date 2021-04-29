@@ -1,22 +1,22 @@
 /*Media Queries*/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
 
   label {
-    font-size: small;
+    font-size: medium;
   }
 
   input {
-    font-size: small;
+    font-size: medium;
   }
 
   .input-group-text {
-    font-size: x-small;
+    font-size: small;
   }
 
   .btn-primary {
     margin-top: 10px;
-    font-size: small;
+    font-size: medium;
     width: 50%;
     border-radius: 10px;
   }

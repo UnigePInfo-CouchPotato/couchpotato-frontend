@@ -4,6 +4,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticationGuardService as AuthenticationGuard } from './services/authentication-guard.service';
 
+/** List of routes for the application. */
 const routes: Routes = [
   {
     path: '',
