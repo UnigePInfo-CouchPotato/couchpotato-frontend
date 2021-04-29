@@ -15,7 +15,7 @@
       <input class="form-control" id="password" type="password" name="password" formControlName="password" placeholder="Password" required/>
     </div>
   </div>
-  <button class="btn btn-primary mb-2 mx-auto" title="Please fill the form" type="submit" [disabled]="this.formData.pristine || !this.formData.valid" (click)="this.onSubmit()">
+  <button class="btn btn-primary mb-2 mx-auto" type="submit" [disabled]="this.formData.pristine || !this.formData.valid" (click)="this.onSubmit()">
     Login
   </button>
 </form>

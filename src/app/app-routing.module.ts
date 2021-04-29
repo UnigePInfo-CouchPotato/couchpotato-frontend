@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthenticationGuardService as AuthenticationGuard } from './services/authentication-guard.service';
 import {UserProfileComponent} from './components/home/user-profile/user-profile.component';
 
+/** List of routes for the application. */
 const routes: Routes = [
   {
     path: '',

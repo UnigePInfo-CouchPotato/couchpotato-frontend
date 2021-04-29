@@ -1,25 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Languages } from '../interfaces/languages';
 
+/** Service used to query IMDB API's */
 @Injectable({
   providedIn: 'root'
 })
 export class ImdbQueryService {
-
+  /** Creates an instance of ImdbQueryService.
+   * @param http The client used to process API requests
+   */
   constructor(private http: HttpClient) { }
-
-  async queryRandomAPI(): Promise<Languages[]> {
-
-    /*
-    const speakerCount: Languages[] = await new Promise<Languages[]>((resolve, _) => {
-      this.http.get('http://localhost:1337/v1/languages', {
-        headers: new HttpHeaders({
-          'Access-Control-Allow-Origin':'*'
-        })
-      }).subscribe((r) => resolve(r as Languages[]));
-    });
-*/
-    return [];
-  }
 }
