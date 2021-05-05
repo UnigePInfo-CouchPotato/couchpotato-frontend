@@ -11,7 +11,8 @@ import { RegisterComponent } from './components/authentication/register/register
 import { HomeComponent } from './components/home/home.component';
 import { MainBodyComponent } from './components/common/main-body/main-body.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserProfileComponent } from './components/home/user-profile/user-profile.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserProfileComponent } from './components/home/user-profile/user-profil
     RegisterComponent,
     HomeComponent,
     MainBodyComponent,
-    UserProfileComponent
+    HeaderComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'couchpotato-frontend' }),

@@ -21,7 +21,10 @@
 
 .card-heading {
   background-color: lighten(black, 50%);
-  margin-top: 1rem;
+  padding: .5rem;
+}
+.card-body {
+  padding: .75rem;
 }
 
 #card-title {
@@ -30,8 +33,11 @@
   background-color: maroon;
   border: 1px solid;
   border-radius: 1rem;
-  width: 30%;
+  width: fit-content;
+  font-size: xx-large !important;
+  padding: .5rem !important;
 }
+
 
 .pill-box {
   margin-top: 1rem;
@@ -44,6 +50,7 @@
   border-radius: .275rem .275rem;
   user-select: none;
   cursor: pointer;
+  font-size: large !important;
 }
 
 .pill.active {
@@ -57,14 +64,32 @@
     width: 95%;
   }
 
-  .pill {
-    padding: 1.5rem !important;
+  .pill, #card-title {
+    font-size: large !important;
+    padding: .5rem !important;
   }
 
-  .pill, #card-title {
-    font-size: medium !important;
+  #card-title {
+    width: 70%;
+    border-radius: 8px;
+  }
+
+  .couchpotato-img {
+    width: 10rem;
+    height: 10rem;
+    max-width:100%;
+    max-height:100%;
+    margin: .25rem auto;
+    border-radius: 50%;
+  }
+
+  .pill {
+    font-size: small;
+    margin-left: .25rem;
+    border-radius: .5rem .5rem;
   }
 }
+
 
 @media screen and (max-width: 400px) {
   h1 {
@@ -73,24 +98,5 @@
 
   h2 {
     font-size: x-large;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  #card-title {
-    font-size: small;
-    width: 50%;
-    border-radius: 8px;
-  }
-
-  .couchpotato-img {
-    width: 20rem;
-    height: 20rem;
-  }
-
-  .pill {
-    font-size: small;
-    margin-left: .25rem;
-    border-radius: .5rem .5rem;
   }
 }

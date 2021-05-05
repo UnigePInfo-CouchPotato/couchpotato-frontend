@@ -7,11 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent {
-  /** Whether or not the currently selected mode is to login. */
-  loginSelected: boolean = true;
 
-  /** Toggle the mode to the one defined by the current button. */
-  set selected(isLogin: boolean) {
-    this.loginSelected = isLogin;
-  }
 }
