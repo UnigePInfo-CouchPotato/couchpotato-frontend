@@ -6,7 +6,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationGuardService implements CanActivate {
+export class ReverseAuthenticationGuard implements CanActivate {
 
   /** Creates an instance of AuthenticationGuardService.
    *
@@ -17,8 +17,8 @@ export class AuthenticationGuardService implements CanActivate {
 
   /** Whether the route can be activated when the guard is triggered. */
   canActivate(): boolean {
-    if (!this.authService.isAuthenticated) {
-      this.router.navigate(['login']);
+    if (this.authService.isAuthenticated) {
+      this.router.navigate(['home']);
       return false;
     }
     return true;

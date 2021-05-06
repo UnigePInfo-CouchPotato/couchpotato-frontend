@@ -28,11 +28,23 @@ export class HeaderComponent implements OnInit {
   /** Initialises the component. */
   ngOnInit(): void {
     this.authenticated = this.auth.isAuthenticated;
+    this.auth.userAuthenticated.subscribe({
+      next: (v: boolean) => this.authenticated = v
+    });
     this.router.events.subscribe((event: Event) => {
       if (event instanceof RouterEvent) {
         this.currentPath = event.url;
       }
     });
+  }
+
+  // TODO Remove
+  toggleAuthDebug() {
+    this.auth.toggleLoggedInDebugFn();
+  }
+
+  logout() {
+    this.auth.attemptLogout();
   }
 
 }

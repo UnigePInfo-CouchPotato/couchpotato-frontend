@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 /** Service used to authenticate users. */
 @Injectable({
@@ -7,7 +8,8 @@ import { Injectable } from '@angular/core';
 })
 export class AuthenticationService {
   /** Whether the user is authenticated. */
-  private userAuthenticated: boolean = true;
+  private isUserAuthenticated: boolean = true;
+  userAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(this.isUserAuthenticated);
 
   /** Creates an instance of AuthenticationService.
    *
@@ -17,7 +19,7 @@ export class AuthenticationService {
 
   /** Retrieve whether the user is authenticated. */
   get isAuthenticated(): boolean {
-    return this.userAuthenticated;
+    return this.isUserAuthenticated;
   }
 
   /** Attempts to register a new user. */
@@ -34,5 +36,16 @@ export class AuthenticationService {
     // this.http.get(``);
 
     return;
+  }
+
+  attemptLogout() {
+    this.isUserAuthenticated = false;
+    this.userAuthenticated.next(false);
+  }
+
+  // TODO Remove
+  toggleLoggedInDebugFn() {
+    this.isUserAuthenticated = !this.isUserAuthenticated;
+    this.userAuthenticated.next(this.isUserAuthenticated);
   }
 }

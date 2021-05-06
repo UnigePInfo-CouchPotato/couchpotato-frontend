@@ -18,6 +18,7 @@
     <button class="btn btn-primary mb-2 mx-auto" type="submit" [disabled]="this.formData.pristine || !this.formData.valid" (click)="this.onSubmit()">
       Login
     </button>
+    <a [routerLink]="['/register']" class="btn btn-info mx-auto mt-3">No account? Register one now</a>
   </form>
 
 </app-authentication>

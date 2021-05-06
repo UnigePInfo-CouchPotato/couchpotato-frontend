@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/authentication/register/register
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthenticationGuardService as AuthenticationGuard } from './services/authentication-guard.service';
+import { ReverseAuthenticationGuard } from './services/reverse-authentication-guard.service';
 
 /** List of routes for the application. */
 const routes: Routes = [
@@ -30,11 +31,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [ReverseAuthenticationGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [ReverseAuthenticationGuard]
   },
   {
     path: '**',
