@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - "10"
+env:
+- NODE_VERSION="10.19.0"
+
+services:
+- docker
+
+  
+jobs:
+  include:
+  - stage: Build
+    script:
+    - pwd
+    - node -v
+    - npm -v
+    - npm install
+    - npm run-script build --prod
+    
+before_install:
+- openssl aes-256-cbc -K $encrypted_dfdcfd5172af_key -iv $encrypted_dfdcfd5172af_iv
+  -in deploy_key.enc -out ./deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ./deploy_key
+- echo -e "Host 129.194.10.127\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- ssh-add ./deploy_key
+- ssh -i ./deploy_key saberfa0@129.194.10.127 pwd
+- nvm install v$NODE_VERSION
+
+
+
