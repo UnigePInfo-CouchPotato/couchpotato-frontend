@@ -17,6 +17,7 @@ jobs:
     - pwd
     - node -v
     - npm -v
+    - npm ci
     - npm install
     - npm run-script build --prod
 before_install:

@@ -45,4 +45,4 @@ testem.log
 .DS_Store
 Thumbs.db
 documentation
-deploy_keydeploy_key
+deploy_key
