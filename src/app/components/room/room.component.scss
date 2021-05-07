@@ -1,0 +1,21 @@
+
+#card-title {
+  margin: 0 auto;
+  color: whitesmoke;
+  background-color: maroon;
+  border: 1px solid;
+  border-radius: 1rem;
+  width: fit-content;
+  font-size: xx-large !important;
+  padding: .5rem !important;
+}
+
+
+.page-container {
+  width: 50%;
+}
+@media screen and (max-width: 768px) {
+  .page-container {
+    width: 95%;
+  }
+}

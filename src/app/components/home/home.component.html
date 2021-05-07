@@ -1,2 +1,18 @@
-<p>home works!</p>
-JOIN / CREATE ROOM
+<div class="h-100 d-flex flex-column justify-content-center">
+  <div class="mx-auto page-container d-flex flex-column container-fluid">
+    <div class="card card-heading">
+      <img src="/assets/pictures/couchpotato_avatar.png" alt="couchpotato-avatar" class="img-fluid card-img-top couchpotato-img unselectable">
+      <div class="card-body my-3 mx-auto" id="card-title">
+        <h3 class="text-center">Welcome to CouchPotato!</h3>
+      </div>
+    </div>
+    <div class="p-2 card">
+      <p>CouchPotato is a free service that assists you in choosing a movie to watch when amongst friends.</p>
+      <p>All you need to do is specify what movie genres you like, join a viewing room, and then vote on the recommended movie that looks the most interesting.</p>
+
+      <p>The movie with the most votes is then the one that you can view.</p>
+
+      <a [routerLink]="['/room']" class="btn btn-primary mx-auto">Get started</a>
+    </div>
+  </div>
+</div>

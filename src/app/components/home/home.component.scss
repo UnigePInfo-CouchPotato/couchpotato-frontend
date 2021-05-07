@@ -1,0 +1,38 @@
+
+.page-container {
+  width: 50%;
+}
+@media screen and (max-width: 768px) {
+  .page-container {
+    width: 95%;
+  }
+}
+
+
+.couchpotato-img {
+  width: 7rem;
+  height: 7rem;
+  max-width:100%;
+  max-height:100%;
+  margin: .25rem auto;
+  border-radius: 25%;
+}
+
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#card-title {
+  color: whitesmoke;
+  background-color: maroon;
+  border: 1px solid;
+  border-radius: 1rem;
+  width: fit-content;
+  font-size: xx-large !important;
+  padding: .5rem !important;
+}
+

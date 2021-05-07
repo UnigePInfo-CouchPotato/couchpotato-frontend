@@ -1,100 +1,107 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-//@import "~@fontsource/dosis"; // Weight 500
-//@import "~@fontsource/anton"; // Weight 500
+  @import '~bootstrap/dist/css/bootstrap.min.css';
+  @import "~@ng-select/ng-select/themes/default.theme.css";
+  //@import "~@fontsource/dosis"; // Weight 500
+  //@import "~@fontsource/anton"; // Weight 500
 
-#main_content h1{font-size:1.875em}
-#main_content h2{font-size:1.5em}
-#main_content h3{font-size:1.125em}
-#main_content h4{font-size:0.875em}
-#main_content h5{font-size:0.75em;text-transform:uppercase;margin:0 0 5px 0}
-#main_content h6{font-size:0.75em;text-transform:uppercase;color:#999;margin:0 0 5px 0}
+  #main_content h1{font-size:1.875em}
+  #main_content h2{font-size:1.5em}
+  #main_content h3{font-size:1.125em}
+  #main_content h4{font-size:0.875em}
+  #main_content h5{font-size:0.75em;text-transform:uppercase;margin:0 0 5px 0}
+  #main_content h6{font-size:0.75em;text-transform:uppercase;color:#999;margin:0 0 5px 0}
 
-html, body {
-  height: 100%;
-  background-color: #e6e6e6;
-}
+  html, body {
+    height: 100%;
+    background-color: #e6e6e6;
+  }
 
-nav {
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    align-items: flex-start;
+  nav {
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      align-items: flex-start;
 
-    .paths {
-      padding: 0 1.5rem;
-    }
+      .paths {
+        padding: 0 1.5rem;
+      }
 
-    li {
-      list-style-image: none;
-      float: left;
-    }
+      li {
+        list-style-image: none;
+        float: left;
+      }
 
-    li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      margin: 0 10px;
-      text-decoration: none;
-      transition: ease-in-out 0.3s;
-    }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: ease-in-out 0.3s;
+      }
 
-    li a:hover {
-      color: #EA0300;
-      text-decoration: none;
+      li a:hover {
+        color: #EA0300;
+        text-decoration: none;
+      }
     }
   }
-}
 
-/* Sets the dimensions of the entire scrollbar */
-html::-webkit-scrollbar {
-  width: 0.5em;
-  height: 0.5em;
-}
+  /* Sets the dimensions of the entire scrollbar */
+  html::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
 
-/* The grabbable scrollbar button  */
-html::-webkit-scrollbar-thumb {
-  background: -webkit-gradient(linear,left top,left bottom,from(#ff8a00),to(#e52e71));
-  background: linear-gradient(180deg,#ff8a00,#e52e71);
-  border-radius: 30px;
-  box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25), inset -2px -2px 2px rgba(0,0,0,.25);
-}
+  /* The grabbable scrollbar button  */
+  html::-webkit-scrollbar-thumb {
+    background: -webkit-gradient(linear,left top,left bottom,from(#ff8a00),to(#e52e71));
+    background: linear-gradient(180deg,#ff8a00,#e52e71);
+    border-radius: 30px;
+    box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25), inset -2px -2px 2px rgba(0,0,0,.25);
+  }
 
-/* The vertical scrollbar background */
-html::-webkit-scrollbar-track {
-  background: linear-gradient(90deg,#201c29,#201c29 1px,#100e17 0,#100e17);
-}
+  /* The vertical scrollbar background */
+  html::-webkit-scrollbar-track {
+    background: linear-gradient(90deg,#201c29,#201c29 1px,#100e17 0,#100e17);
+  }
 
 
-.main-page {
-  display: flex;
-}
+  .main-page {
+    display: flex;
+  }
 
-.no-underline {
-  text-decoration: none;
-}
+  .no-underline {
+    text-decoration: none;
+  }
 
-.center {
-  text-align: center;
-}
+  .center {
+    text-align: center;
+  }
 
-.document {
-  width: 80%;
-}
+  .document {
+    width: 80%;
+  }
 
-h1 {
-  margin: 0;
-}
+  h1 {
+    margin: 0;
+  }
 
-ul.nomargin {
-  margin: 0;
-}
+  ul.nomargin {
+    margin: 0;
+  }
 
-.media-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
+  .media-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+
+  .card-heading {
+    background-color: lighten(black, 50%);
+    padding: .5rem;
+  }

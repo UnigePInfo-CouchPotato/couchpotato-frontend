@@ -11,11 +11,11 @@
 
     <nav>
       <ul class="d-flex flex-row flex-wrap">
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/home') == 0) || (this.currentPath.localeCompare('/') == 0)}"><a href="/home">Home</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/login')) == 0, 'invisible': (this.authenticated)}"><a href="/login">Login</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/register')) == 0, 'invisible': (this.authenticated)}"><a href="/register">Register</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/profile')) == 0, 'invisible': (!this.authenticated)}"><a href="/profile">Profile</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/logout')) == 0, 'invisible': (!this.authenticated)}"><a href="/" (click)="logout()">Log out</a></li>
+        <li [ngClass]="{'active': (this.currentPath.localeCompare('/home') == 0) || (this.currentPath.localeCompare('/') == 0)}"><a [routerLink]="['/home']">Home</a></li>
+        <li [ngClass]="{'active': (this.currentPath.localeCompare('/login')) == 0, 'invisible': (this.authenticated)}"><a [routerLink]="['/login']">Login</a></li>
+        <li [ngClass]="{'active': (this.currentPath.localeCompare('/register')) == 0, 'invisible': (this.authenticated)}"><a [routerLink]="['/register']">Register</a></li>
+        <li [ngClass]="{'active': (this.currentPath.localeCompare('/profile')) == 0, 'invisible': (!this.authenticated)}"><a [routerLink]="['/profile']">Profile</a></li>
+        <li [ngClass]="{'active': (this.currentPath.localeCompare('/logout')) == 0, 'invisible': (!this.authenticated)}"><a (click)="logout()">Log out</a></li>
       </ul>
     </nav>
   </div>

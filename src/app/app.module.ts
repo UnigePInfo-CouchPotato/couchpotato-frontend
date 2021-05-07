@@ -13,6 +13,9 @@ import { MainBodyComponent } from './components/common/main-body/main-body.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/common/header/header.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthenticationService } from './services/authentication.service';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { RoomComponent } from './components/room/room.component';
 
 @NgModule({
   declarations: [
@@ -24,16 +27,19 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     MainBodyComponent,
     HeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'couchpotato-frontend' }),
     HttpClientModule,
     AppRoutingModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule
+
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 /** Service used to authenticate users. */
 @Injectable({
@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthenticationService {
   /** Whether the user is authenticated. */
-  private isUserAuthenticated: boolean = true;
+  private isUserAuthenticated: boolean = localStorage.getItem('token') != '';
   userAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(this.isUserAuthenticated);
 
   /** Creates an instance of AuthenticationService.
@@ -19,7 +19,7 @@ export class AuthenticationService {
 
   /** Retrieve whether the user is authenticated. */
   get isAuthenticated(): boolean {
-    return this.isUserAuthenticated;
+    return localStorage.getItem('token') != '' || this.isUserAuthenticated;
   }
 
   /** Attempts to register a new user. */
@@ -41,11 +41,20 @@ export class AuthenticationService {
   attemptLogout() {
     this.isUserAuthenticated = false;
     this.userAuthenticated.next(false);
+    localStorage.setItem('token', '');
   }
 
   // TODO Remove
   toggleLoggedInDebugFn() {
     this.isUserAuthenticated = !this.isUserAuthenticated;
     this.userAuthenticated.next(this.isUserAuthenticated);
+
+    localStorage.setItem('token', this.isUserAuthenticated ? 'dev' : '');
+
+  }
+
+  printVal() {
+    console.log(this.isUserAuthenticated);
+    console.log(localStorage.getItem('token'));
   }
 }
