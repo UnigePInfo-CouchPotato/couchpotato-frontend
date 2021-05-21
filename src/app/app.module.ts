@@ -16,6 +16,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AuthenticationService } from './services/authentication.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RoomComponent } from './components/room/room.component';
+import { HorizontalSpinnerComponent } from './components/common/horizontal-spinner/horizontal-spinner.component';
+import { HomeOldComponent } from './components/home-old/home-old.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RoomComponent } from './components/room/room.component';
     MainBodyComponent,
     HeaderComponent,
     ProfileComponent,
-    RoomComponent
+    RoomComponent,
+    HorizontalSpinnerComponent,
+    HomeOldComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'couchpotato-frontend' }),

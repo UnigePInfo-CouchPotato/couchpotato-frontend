@@ -1,0 +1,84 @@
+$color33: #F148FB;
+$color66: #7122FA;
+$color100: #560A86;
+$colorNone: #00000000;
+
+.spinner-hidden {
+  visibility: hidden;
+}
+
+.spinner-body {
+  height: .25rem;
+  width: 100vw;
+  position: relative;
+  animation: load 1s infinite;
+}
+
+.spinner-left, .spinner-right {
+  position: absolute;
+  width: 50vw;
+  height: .25rem;
+}
+
+.spinner-left > *, .spinner-right > * {
+  position: absolute;
+  width: 0;
+  height: .25rem;
+}
+
+.spinner-left-3 { left: 0; animation: _far-left 1s infinite; }
+.spinner-left-2 { left: calc(50vw / 3 + 1); animation: _mid-left 1s infinite; }
+.spinner-left-1 { left: calc(50vw / 3 * 2 + 1); animation: _center-left 1s infinite; }
+.spinner-right-1 { left: 0; animation: _center-right 1s infinite; }
+.spinner-right-2 { left: calc(50vw / 3); animation: _mid-right 1s infinite; }
+.spinner-right-3 { left: calc(50vw / 3 * 2); animation: _far-right 1s infinite; }
+
+.spinner-left {
+  left: 0;
+}
+
+.spinner-right {
+  left: 50vw;
+}
+
+@keyframes _far-left {
+  33.33% { background-color: $colorNone; width: 0; left: calc(50vw / 3);}
+  50% { background-color: $color100; width: calc(50vw / 3); left: 0; }
+  66.66% { background-color: $color100; width: calc(50vw / 3); left: 0; }
+  83.33% { background-color: $color100; width: 0; left: 0; }
+}
+
+@keyframes _mid-left {
+  16.66% { background-color: $colorNone; width: 0; left: calc(50vw / 3 * 2);}
+  33.33% { background-color: $color66; width: calc(50vw / 3); left: calc(50vw / 3); }
+  50% { background-color: $color66; width: calc(50vw / 3); left: calc(50vw / 3); }
+  66.66% { background-color: $color66; width: 0; left: calc(50vw / 3); }
+}
+
+@keyframes _center-left {
+  0% { background-color: $colorNone; width: 0; left: calc(50vw); }
+  16.66% { background-color: $color33; width: calc(50vw / 3); left: calc(50vw / 3 * 2); }
+  33.33% { background-color: $color33; width: calc(50vw / 3); left: calc(50vw / 3 * 2); }
+  50% { background-color: $color33; width: 0; left: calc(50vw / 3 * 2); }
+}
+
+@keyframes _center-right {
+  0% { background-color: $colorNone; width: 0; left: 0;}
+  16.66% { background-color: $color33; width: calc(50vw / 3); left: 0 }
+  33.33% { background-color: $color33; width: calc(50vw / 3); left: 0 }
+  50% { background-color: $color33; width: 0; left: calc(50vw / 3); }
+}
+
+@keyframes _mid-right {
+  16.66% { background-color: $colorNone; width: 0; left: calc(50vw / 3);}
+  33.33% { background-color: $color66; width: calc(50vw / 3); left: calc(50vw / 3); }
+  50% { background-color: $color66; width: calc(50vw / 3); left: calc(50vw / 3); }
+  66.66% { background-color: $color66; width: 0; left: calc(50vw / 3 * 2); }
+}
+
+@keyframes _far-right {
+  33.33% { background-color: $colorNone; width: 0; left: calc(50vw / 3 * 2);}
+  50% { background-color: $color100; width: calc(50vw / 3); left: calc(50vw / 3 * 2); }
+  66.66% { background-color: $color100; width: calc(50vw / 3); left: calc(50vw / 3 * 2); }
+  83.33% { background-color: $color100; width: 0; left: calc(50vw); }
+}
