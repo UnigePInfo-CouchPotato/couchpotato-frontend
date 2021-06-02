@@ -1,8 +1,53 @@
-<div class="h-100 d-flex flex-row justify-content-center">
-  <div class="col-sm-8 d-flex flex-column justify-content-center">
+<div class="h-100 d-flex flex-column justify-content-between">
+  <div class="my-auto d-flex flex-column justify-content-center align-items-stretch">
+    <div class="col-md-12 d-flex flex-column justify-content-center align-items-stretch">
+      <div class="d-flex justify-content-center my-4">
+        <div class="app-title text-center card unselectable my-4">COUCHPOTATO</div>
+      </div>
+      <ng-container *ngIf="this.userAuthenticated; else notAuthenticatedTemplate">
+        <div class="d-flex flex-row">
+          <div class="col-md-6">Welcome back!</div>
+          <div class="col-md-6">Get Started</div>
+        </div>
+      </ng-container>
+      <ng-template #notAuthenticatedTemplate>
+        <div class="d-flex flex-row">
+          <div class="col-md-6">Welcome to!</div>
+          <div class="col-md-6">Login / Register</div>
+        </div>
+      </ng-template>
 
-  </div>
-  <div class="col-sm-4"> <!-- TODO ngif logged in / not logged in -->
-aaa
+      <div class="w-100 app-description">
+        <div class="d-flex flex-column">
+          <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-left">
+            <div class="description-text col-md-8">
+              <p>Have you ever been to a pajama party? Or just a party with some friends? Have you ever <span class="highlight">been stuck</span> thinking of a movie for you to look at? Or <span class="highlight">fought</span> about what to view next?</p>
+              <br/>
+              <p>You are not alone!</p>
+            </div>
+            <div class="description-image col-md-4"></div>
+          </div>
+          <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-right">
+            <div class="description-image col-md-4"></div>
+            <div class="description-text col-md-8">
+              <h2>Our solution</h2>
+              <p>Our team has devised a way to minimize conflict while searching for a movie and offers you <span class="highlight">"CouchPotato"</span>.</p>
+              <p>This free service assists you in choosing a movie to watch when among friends, but also makes it into an event <span class="highlight">everyone can enjoy</span>.</p>
+            </div>
+          </div>
+          <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-left">
+            <div class="description-text col-md-8">
+              <h2>How does it work?</h2>
+              <p>All you need to do is specify what movie genres you like, join a viewing room, and then vote on the recommended movie that looks the most interesting.</p>
+              <p>The movie with the most votes is then the one that you will watch.</p>
+              <p>(And if it doesn't work out, just blame the algorithm!)</p>
+            </div>
+            <div class="description-image col-md-4">aaa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="btn btn-primary button-top" (click)="scrollToTop()" [class.hidden]="!this.showButton">
+    <em class="fas fa-chevron-up"></em>
   </div>
 </div>

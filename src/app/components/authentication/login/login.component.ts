@@ -34,6 +34,6 @@ export class LoginComponent {
    * which tells the authentication service to attempt to log the user in.
    */
   onSubmit(): void {
-    this.authenticationService.attemptLogin(this.formData.get('username')?.value, this.formData.get('password')?.value);
+    this.authenticationService.attemptLogin();
   }
 }

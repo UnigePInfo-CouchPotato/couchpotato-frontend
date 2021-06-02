@@ -1,6 +1,7 @@
 import { Router, Event, RouterEvent } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 /**
  * The header element of the page.
@@ -13,28 +14,27 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  /** What page is currently loaded, used to highlight the navbar. */
-  currentPath: string = '/home';
+  profileButton: HTMLElement;
 
   authenticated: boolean = false;
+
+  profileInfoShown: boolean = false;
+
+  // TODO Remove
+  private spin = false;
 
   /**
    * Creates an instance of HeaderComponent.
    *
    * @param router The Router to observe the url path from.
    */
-  constructor(private router: Router, private auth: AuthenticationService) { }
+  constructor(private router: Router, private auth: AuthenticationService, private spinner: SpinnerService) { }
 
   /** Initialises the component. */
   ngOnInit(): void {
     this.authenticated = this.auth.isAuthenticated;
-    this.auth.userAuthenticated.subscribe({
+    this.auth.isUserAuthenticated$.subscribe({
       next: (v: boolean) => this.authenticated = v
-    });
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof RouterEvent) {
-        this.currentPath = event.url;
-      }
     });
   }
 
@@ -43,7 +43,44 @@ export class HeaderComponent implements OnInit {
     this.auth.toggleLoggedInDebugFn();
   }
 
+  get profileButtonWidth() {
+    return document.getElementById('profileButton').getBoundingClientRect().width;
+  }
+
+  get profileButtonVerticalOffset() {
+    const dimensions: DOMRect = document.getElementById('profileButton').getBoundingClientRect();
+    return dimensions.top + dimensions.height;
+  }
+
+  // TODO Remove
+  toggleAnim() {
+    if (!this.spin) {
+      this.spinner.startSpinning();
+      this.spin = !this.spin;
+    } else {
+      this.spinner.stopSpinning();
+      this.spin = !this.spin;
+
+    }
+  }
+
   logout() {
     this.auth.attemptLogout();
+  }
+
+  goToLoginRegister(): void {
+    this.router.navigate(['authentication'], { state: { next: 'login' } });
+  }
+
+  goToProfile(): void {
+    this.router.navigate(['profile']);
+  }
+
+  goToLogout(): void {
+    this.router.navigate(['authentication'], { state: { next: 'logout' } });
+  }
+
+  setProfileInfoShown(value: boolean) {
+    this.profileInfoShown = value;
   }
 }

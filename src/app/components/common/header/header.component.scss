@@ -1,89 +1,53 @@
 header {
+  position: fixed;
+  top: 0px;
+  background-color: transparent !important;
   z-index: 997;
-  transition: all 0.5s ease-in-out;
-  padding: 14px 0;
-  background: #343a40!important;
-
-  h1 {
-    a {
-      color: white;
-      text-decoration: none;
-    }
-  }
+  width: 100vw;
 }
 
-ul {
-  list-style-type: none;
-  float: left;
-  margin: 0;
+.profile {
+  margin-top: .5rem;
+  margin-right: 2rem;
 }
 
-ul li a {
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  margin: 0 10px;
-  text-decoration: none;
-  transition: .3s ease-in-out;
+.profile-button {
+  background-color: grey;
+  border-radius: 1rem;
+  height: 30px;
 }
 
-.couchpotato-logo {
-  height: 3rem;
-  width: 3rem;
+.profile-button.tabbed {
+  border-radius: 1rem 1rem 0px 0px;
 }
 
-li.active {
-  background: lighten($color: #343a40, $amount: 5);
-  border-radius: 5px;
-}
-
-li {
-  a:hover {
-    color: #60baff !important;
-  }
-}
-
-li.invisible {
+.profile-dropdown {
+  position: fixed;
   display: none;
-  width: 0;
 }
 
-li:not(.active) {
-  a:hover {
-    text-shadow: 0 0 1px #1e1146, 0 0 10px #0000FF;
-    font-weight: bold;
-  }
+.profile-dropdown > * {
+  display: none;
 }
 
-
-@media screen and (max-width: 768px) {
-  header {
-    padding: 4px 0 !important;
-
-    nav {
-      margin: auto;
-    }
-
-    div {
-      h1 {
-        width: 100%;
-        margin: 0 auto !important;
-        margin-bottom: .25rem !important;
-      }
-    }
-
-    ul {
-      justify-content: center;
-      margin: 0 auto;
-      li {
-        a {
-          padding: 4px 10px !important;
-        }
-      }
-    }
-  }
+.profile-dropdown.visible {
+  display: block !important;
 }
 
-@media screen and (max-width: 400px) {
+.profile-link {
+  background-color: red;
+  display: none !important;
+}
+
+.profile-link:hover {
+  background-color: aqua;
+}
+
+.profile-link.visible {
+  display: block !important;
+  border-radius: 0 !important;
+}
+
+.profile-link.rounded {
+  border-radius: 0px 0px 1rem 1rem !important;
 }

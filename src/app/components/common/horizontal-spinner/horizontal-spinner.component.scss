@@ -10,7 +10,8 @@ $colorNone: #00000000;
 .spinner-body {
   height: .25rem;
   width: 100vw;
-  position: relative;
+  position: fixed;
+  top: 0px;
   animation: load 1s infinite;
 }
 
@@ -26,13 +27,6 @@ $colorNone: #00000000;
   height: .25rem;
 }
 
-.spinner-left-3 { left: 0; animation: _far-left 1s infinite; }
-.spinner-left-2 { left: calc(50vw / 3 + 1); animation: _mid-left 1s infinite; }
-.spinner-left-1 { left: calc(50vw / 3 * 2 + 1); animation: _center-left 1s infinite; }
-.spinner-right-1 { left: 0; animation: _center-right 1s infinite; }
-.spinner-right-2 { left: calc(50vw / 3); animation: _mid-right 1s infinite; }
-.spinner-right-3 { left: calc(50vw / 3 * 2); animation: _far-right 1s infinite; }
-
 .spinner-left {
   left: 0;
 }
@@ -40,6 +34,13 @@ $colorNone: #00000000;
 .spinner-right {
   left: 50vw;
 }
+
+.spinner-left-3 { left: 0; animation: _far-left 1s infinite; }
+.spinner-left-2 { left: calc(50vw / 3 + 1); animation: _mid-left 1s infinite; }
+.spinner-left-1 { left: calc(50vw / 3 * 2 + 1); animation: _center-left 1s infinite; }
+.spinner-right-1 { left: 0; animation: _center-right 1s infinite; }
+.spinner-right-2 { left: calc(50vw / 3); animation: _mid-right 1s infinite; }
+.spinner-right-3 { left: calc(50vw / 3 * 2); animation: _far-right 1s infinite; }
 
 @keyframes _far-left {
   33.33% { background-color: $colorNone; width: 0; left: calc(50vw / 3);}

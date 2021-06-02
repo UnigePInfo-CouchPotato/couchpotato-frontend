@@ -17,8 +17,10 @@ import { AuthenticationService } from './services/authentication.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RoomComponent } from './components/room/room.component';
 import { HorizontalSpinnerComponent } from './components/common/horizontal-spinner/horizontal-spinner.component';
-import { HomeOldComponent } from './components/home-old/home-old.component';
 
+import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +33,7 @@ import { HomeOldComponent } from './components/home-old/home-old.component';
     HeaderComponent,
     ProfileComponent,
     RoomComponent,
-    HorizontalSpinnerComponent,
-    HomeOldComponent
+    HorizontalSpinnerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'couchpotato-frontend' }),
@@ -40,10 +41,17 @@ import { HomeOldComponent } from './components/home-old/home-old.component';
     AppRoutingModule,
     NgSelectModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    AnimateOnScrollModule.forRoot(),
+    AuthModule.forRoot({
+      ...env.auth0
+    })
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    console.log(env.production);
+  }
+}

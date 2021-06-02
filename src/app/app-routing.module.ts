@@ -7,7 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AuthenticationGuardService as AuthenticationGuard } from './services/authentication-guard.service';
 import { ReverseAuthenticationGuard } from './services/reverse-authentication-guard.service';
 import { RoomComponent } from './components/room/room.component';
-import { HomeOldComponent } from './components/home-old/home-old.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 
 /** List of routes for the application. */
 const routes: Routes = [
@@ -15,10 +15,6 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'home-old',
-    component: HomeOldComponent,
   },
   {
     path: 'profile',
@@ -29,6 +25,10 @@ const routes: Routes = [
     path: 'room',
     component: RoomComponent,
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'authentication',
+    component: AuthenticationComponent,
   },
   {
     path: 'login',
@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: ''
   }
 ];
 

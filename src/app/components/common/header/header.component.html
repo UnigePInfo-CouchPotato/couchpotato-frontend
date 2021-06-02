@@ -1,22 +1,26 @@
 <header>
-  <div class="w-100 row m-0 py-0 px-3 d-flex flex-row justify-content-between align-items-center">
-    <h1 class="ml-2 text-center">
-      <a class="navbar-brand m-0" [routerLink]="['/home']">
-        <img src="../../../../assets/pictures/couchpotato_logo.png" alt="couchpotato-logo" class="couchpotato-logo img-fluid img-thumbnail d-inline-block align-middle mr-2">
-        Couch Potato
-      </a>
-    </h1>
-
+  <div class="row d-flex flex-row justify-content-end align-items-center">
     <div class="btn btn-warning" (click)="toggleAuthDebug()">DEBUG Toggle Auth</div>
+    <div class="btn btn-warning" (click)="toggleAnim()">DEBUG Anim</div>
+    <div class="profile d-flex flex-column justify-content-end">
+      <div id="profileButton"
+        class="profile-button btn d-flex flex-row align-items-center p-3"
+        (click)="this.authenticated ? this.setProfileInfoShown(true) : this.goToLoginRegister()"
+        [class.tabbed]="this.authenticated && this.profileInfoShown"
+        (mouseleave)="this.setProfileInfoShown(false)">
+        <div class="fas fa-user mr-2"></div>
+        <div *ngIf="this.authenticated">Account</div>
+        <div *ngIf="!this.authenticated">Login / Register</div>
+      </div>
+      <div class="profile-dropdown d-flex flex-column"
+        [ngStyle]="{'width': profileButtonWidth + 'px', 'top': profileButtonVerticalOffset + 'px'}"
+        [class.visible]="this.profileInfoShown"
+        (mouseenter)="this.setProfileInfoShown(true)"
+        (mouseleave)="this.setProfileInfoShown(false)">
+        <div (click)="goToProfile()" class="btn profile-link px-4 py-2" [class.visible]="this.profileInfoShown && this.authenticated">Profile</div>
+        <div (click)="goToLogout()" class="btn profile-link px-4 py-2 rounded" [class.visible]="this.profileInfoShown && this.authenticated">Logout</div>
+      </div>
+    </div>
 
-    <nav>
-      <ul class="d-flex flex-row flex-wrap">
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/home') == 0) || (this.currentPath.localeCompare('/') == 0)}"><a [routerLink]="['/home']">Home</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/login')) == 0, 'invisible': (this.authenticated)}"><a [routerLink]="['/login']">Login</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/register')) == 0, 'invisible': (this.authenticated)}"><a [routerLink]="['/register']">Register</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/profile')) == 0, 'invisible': (!this.authenticated)}"><a [routerLink]="['/profile']">Profile</a></li>
-        <li [ngClass]="{'active': (this.currentPath.localeCompare('/logout')) == 0, 'invisible': (!this.authenticated)}"><a (click)="logout()">Log out</a></li>
-      </ul>
-    </nav>
   </div>
 </header>
