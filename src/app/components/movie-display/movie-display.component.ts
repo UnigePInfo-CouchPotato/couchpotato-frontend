@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ImdbQueryService } from 'src/app/services/imdb-query.service';
 
 /** Displays a movie element */
 @Component({
@@ -9,5 +8,5 @@ import { ImdbQueryService } from 'src/app/services/imdb-query.service';
 })
 export class MovieDisplayComponent {
   /** Creates an instance of MovieDisplayComponent. */
-  constructor(private imbdQuery: ImdbQueryService) { }
+  constructor() { }
 }

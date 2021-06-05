@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AuthenticationService } from './services/authentication.service';
 import { WindowScrollService } from './services/window-scroll.service';
 
 /** The root of the application. */
@@ -15,7 +15,7 @@ export class AppComponent {
     this.windowScrollService.updateScrollY(this.getYPosition($event));
   }
 
-  constructor(private windowScrollService: WindowScrollService) { }
+  constructor(private windowScrollService: WindowScrollService, private authenticationService: AuthenticationService) { }
 
   getYPosition(e: Event): number {
     // tslint:disable-next-line: no-string-literal

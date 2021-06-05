@@ -1,8 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, AfterViewInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { SpinnerService } from './spinner.service';
 import { AuthService } from '@auth0/auth0-angular';
+import { User } from '../interfaces/user';
+
+/*
+CAPTAIN'S LOG:
+- Attempt to auto-login. Not an option because considered a "single-page app" and endpoint is default.
+*/
 
 /** Service used to authenticate users. */
 @Injectable({
@@ -13,22 +18,24 @@ export class AuthenticationService {
   private isUserAuthenticated: boolean = false;
 
   isUserAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(this.isUserAuthenticated);
+  user$: BehaviorSubject<User> = new BehaviorSubject(null);
 
   /** Creates an instance of AuthenticationService.
    *
    * @param http The HTTP client to make requests.
    */
-  constructor(private http: HttpClient, private spinnerService: SpinnerService, private authNulService: AuthService) {
-    /*this.authNulService.getAccessTokenSilently().subscribe(
-      console.log
-    );*/
+  constructor(private spinnerService: SpinnerService, private authNulService: AuthService) {
+
     this.authNulService.isAuthenticated$.subscribe(
-      x => { this.isUserAuthenticated$.next(x); }
+      x => {
+        this.isUserAuthenticated$.next(x);
+        this.isUserAuthenticated = x;
+      }
     );
-    this.isUserAuthenticated$.subscribe(x => {
-      this.isUserAuthenticated = x;
-      console.log(this.isUserAuthenticated);
-    });
+
+    this.user$.subscribe(
+      x => console.dir(x)
+    );
   }
 
   /** Retrieve whether the user is authenticated. */
@@ -36,38 +43,25 @@ export class AuthenticationService {
     return this.isUserAuthenticated;
   }
 
-  /** Attempts to register a new user. */
-  attemptRegistration(username: string, email: string, password: string) {
-    console.log(`Registration start with username (${username}) and password (${password}) and email (${email})`);
-    // this.http.post
-
-    return;
+  retrieveUserData(): void {
+    this.authNulService.idTokenClaims$.subscribe((u) => {
+      if (u != null) {
+        this.user$.next(u as unknown as User);
+      }
+    });
   }
 
   /** Attempts to login a user. */
   attemptLogin(): void {
-    // TODO Does not work
-    this.authNulService.loginWithPopup({ screen_hint: 'signup' });
-    // this.http.get(``);
-
-    return;
+    this.spinnerService.startSpinning();
+    this.authNulService.loginWithRedirect({ screen_hint: 'signup' });
+    this.retrieveUserData();
+    this.spinnerService.stopSpinning();
   }
 
   async attemptLogout(): Promise<void> {
     this.spinnerService.startSpinning();
     this.authNulService.logout();
     this.spinnerService.stopSpinning();
-  }
-
-  // TODO Remove
-  toggleLoggedInDebugFn() {
-    this.authNulService.user$.subscribe(x => console.dir(x));
-    this.authNulService.idTokenClaims$.subscribe(x => console.dir(x));
-
-  }
-
-  printVal() {
-    console.log(this.isUserAuthenticated);
-    console.log(localStorage.getItem('token'));
   }
 }

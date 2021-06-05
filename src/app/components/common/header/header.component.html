@@ -1,7 +1,5 @@
 <header>
   <div class="row d-flex flex-row justify-content-end align-items-center">
-    <div class="btn btn-warning" (click)="toggleAuthDebug()">DEBUG Toggle Auth</div>
-    <div class="btn btn-warning" (click)="toggleAnim()">DEBUG Anim</div>
     <div class="profile d-flex flex-column justify-content-end">
       <div id="profileButton"
         class="profile-button btn d-flex flex-row align-items-center p-3"
@@ -17,7 +15,6 @@
         [class.visible]="this.profileInfoShown"
         (mouseenter)="this.setProfileInfoShown(true)"
         (mouseleave)="this.setProfileInfoShown(false)">
-        <div (click)="goToProfile()" class="btn profile-link px-4 py-2" [class.visible]="this.profileInfoShown && this.authenticated">Profile</div>
         <div (click)="goToLogout()" class="btn profile-link px-4 py-2 rounded" [class.visible]="this.profileInfoShown && this.authenticated">Logout</div>
       </div>
     </div>

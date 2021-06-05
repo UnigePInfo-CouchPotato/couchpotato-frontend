@@ -1,7 +1,6 @@
-import { Router, Event, RouterEvent } from '@angular/router';
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { SpinnerService } from 'src/app/services/spinner.service';
 
 /**
  * The header element of the page.
@@ -28,19 +27,13 @@ export class HeaderComponent implements OnInit {
    *
    * @param router The Router to observe the url path from.
    */
-  constructor(private router: Router, private auth: AuthenticationService, private spinner: SpinnerService) { }
+  constructor(private router: Router, private auth: AuthenticationService) { }
 
   /** Initialises the component. */
   ngOnInit(): void {
-    this.authenticated = this.auth.isAuthenticated;
     this.auth.isUserAuthenticated$.subscribe({
       next: (v: boolean) => this.authenticated = v
     });
-  }
-
-  // TODO Remove
-  toggleAuthDebug() {
-    this.auth.toggleLoggedInDebugFn();
   }
 
   get profileButtonWidth() {
@@ -52,32 +45,12 @@ export class HeaderComponent implements OnInit {
     return dimensions.top + dimensions.height;
   }
 
-  // TODO Remove
-  toggleAnim() {
-    if (!this.spin) {
-      this.spinner.startSpinning();
-      this.spin = !this.spin;
-    } else {
-      this.spinner.stopSpinning();
-      this.spin = !this.spin;
-
-    }
-  }
-
-  logout() {
-    this.auth.attemptLogout();
-  }
-
   goToLoginRegister(): void {
-    this.router.navigate(['authentication'], { state: { next: 'login' } });
-  }
-
-  goToProfile(): void {
-    this.router.navigate(['profile']);
+    this.router.navigateByUrl('/authentication?action=login');
   }
 
   goToLogout(): void {
-    this.router.navigate(['authentication'], { state: { next: 'logout' } });
+    this.router.navigateByUrl('/authentication?action=logout');
   }
 
   setProfileInfoShown(value: boolean) {
