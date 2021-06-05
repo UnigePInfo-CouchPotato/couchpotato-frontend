@@ -6,8 +6,8 @@
       </div>
       <ng-container *ngIf="this.userAuthenticated; else notAuthenticatedTemplate">
         <div class="d-flex flex-row">
-          <div class="col-md-6">Welcome back!</div>
-          <div class="col-md-6">Get Started</div>
+          <div class="col-md-6"><div>Welcome back!</div><div>Get Started</div></div>
+          <div class="col-md-6">Mood, Logout</div>
         </div>
       </ng-container>
       <ng-template #notAuthenticatedTemplate>

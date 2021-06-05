@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, AfterViewInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SpinnerService } from './spinner.service';
 import { AuthService } from '@auth0/auth0-angular';
@@ -10,7 +10,7 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class AuthenticationService {
   /** Whether the user is authenticated. */
-  private isUserAuthenticated: boolean = localStorage.getItem('token') != '';
+  private isUserAuthenticated: boolean = false;
 
   isUserAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(this.isUserAuthenticated);
 
@@ -19,14 +19,21 @@ export class AuthenticationService {
    * @param http The HTTP client to make requests.
    */
   constructor(private http: HttpClient, private spinnerService: SpinnerService, private authNulService: AuthService) {
+    /*this.authNulService.getAccessTokenSilently().subscribe(
+      console.log
+    );*/
     this.authNulService.isAuthenticated$.subscribe(
-      x => console.log('Authenticated ' + x)
+      x => { this.isUserAuthenticated$.next(x); }
     );
+    this.isUserAuthenticated$.subscribe(x => {
+      this.isUserAuthenticated = x;
+      console.log(this.isUserAuthenticated);
+    });
   }
 
   /** Retrieve whether the user is authenticated. */
   get isAuthenticated(): boolean {
-    return localStorage.getItem('token') != '' || this.isUserAuthenticated;
+    return this.isUserAuthenticated;
   }
 
   /** Attempts to register a new user. */
@@ -40,7 +47,7 @@ export class AuthenticationService {
   /** Attempts to login a user. */
   attemptLogin(): void {
     // TODO Does not work
-    this.authNulService.loginWithRedirect({ screen_hint: 'signup' });
+    this.authNulService.loginWithPopup({ screen_hint: 'signup' });
     // this.http.get(``);
 
     return;
@@ -48,18 +55,14 @@ export class AuthenticationService {
 
   async attemptLogout(): Promise<void> {
     this.spinnerService.startSpinning();
-    this.isUserAuthenticated = false;
-    this.isUserAuthenticated$.next(false);
-    localStorage.setItem('token', '');
+    this.authNulService.logout();
     this.spinnerService.stopSpinning();
   }
 
   // TODO Remove
   toggleLoggedInDebugFn() {
-    this.isUserAuthenticated = !this.isUserAuthenticated;
-    this.isUserAuthenticated$.next(this.isUserAuthenticated);
-
-    localStorage.setItem('token', this.isUserAuthenticated ? 'dev' : '');
+    this.authNulService.user$.subscribe(x => console.dir(x));
+    this.authNulService.idTokenClaims$.subscribe(x => console.dir(x));
 
   }
 

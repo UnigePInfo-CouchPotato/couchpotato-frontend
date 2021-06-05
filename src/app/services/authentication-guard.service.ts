@@ -14,7 +14,6 @@ export class AuthenticationGuardService implements CanActivate {
    * @param router The service used to change what the user is viewing.
    */
   constructor(private authService: AuthenticationService, private router: Router) { }
-
   /** Whether the route can be activated when the guard is triggered. */
   canActivate(): boolean {
     if (!this.authService.isAuthenticated) {

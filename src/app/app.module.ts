@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +19,7 @@ import { RoomComponent } from './components/room/room.component';
 import { HorizontalSpinnerComponent } from './components/common/horizontal-spinner/horizontal-spinner.component';
 
 import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
-import { AuthModule } from '@auth0/auth0-angular';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from 'src/environments/environment';
 @NgModule({
   declarations: [
@@ -44,10 +44,20 @@ import { environment as env } from 'src/environments/environment';
     ReactiveFormsModule,
     AnimateOnScrollModule.forRoot(),
     AuthModule.forRoot({
-      ...env.auth0
+      ...env.auth0,
+      httpInterceptor: {
+        ...env.httpInterceptor,
+      },
     })
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
