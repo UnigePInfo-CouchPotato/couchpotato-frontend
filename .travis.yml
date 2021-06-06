@@ -34,3 +34,8 @@ before_install:
 - ssh-add ./deploy_key
 - ssh -i ./deploy_key saberfa0@129.194.10.127 pwd
 - nvm install v$NODE_VERSION
+after_success:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker build -t couchpotato-frontend/web-ui:latest .
+- docker tag couchpotato-frontend/web-ui faysalsaber/web-ui:latest
+- docker push faysalsaber/web-ui:latest
