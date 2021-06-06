@@ -15,7 +15,6 @@ jobs:
   - stage: Prepare
     script:
     - nvm install $NODE_VERSION
-    - mvn install -N -DskipTestds=true -Dmaven.javadoc.skip=true -B -V
   - stage: Build
     script:
     - pwd
