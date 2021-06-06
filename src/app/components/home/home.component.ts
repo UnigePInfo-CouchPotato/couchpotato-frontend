@@ -15,10 +15,12 @@ export class HomeComponent implements OnInit {
   /** Creates an instance of HomeComponent. */
   constructor(private authService: AuthenticationService, private scrollService: WindowScrollService) { }
 
+  header = this.authService.authorizationHeader$;
+
   /** On instance. */
   ngOnInit(): void {
-    this.userAuthenticated = this.authService.isAuthenticated;
-    this.authService.isUserAuthenticated$.subscribe((auth: boolean) => this.userAuthenticated = auth);
+    this.authService.isUserAuthenticatedObs$.subscribe(
+      (auth: boolean) => this.userAuthenticated = auth);
     this.scrollService.scrollY$.subscribe((newY: number) => this.showButton = newY > 50);
   }
 

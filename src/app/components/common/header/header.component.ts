@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
   /** Initialises the component. */
   ngOnInit(): void {
-    this.auth.isUserAuthenticated$.subscribe({
+    this.auth.isUserAuthenticatedObs$.subscribe({
       next: (v: boolean) => this.authenticated = v
     });
   }
