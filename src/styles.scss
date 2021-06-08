@@ -4,6 +4,8 @@
 @import "~@fontsource/dosis"; // Weight 500
 //@import "~@fontsource/anton"; // Weight 500
 
+@import "assets/styles/ng-select-overrides.scss";
+
 #main_content h1{font-size:1.875em}
 #main_content h2{font-size:1.5em}
 #main_content h3{font-size:1.125em}
@@ -74,4 +76,12 @@ ul.nomargin {
 
 .mh-100 {
   min-height: 100%;
+}
+
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }

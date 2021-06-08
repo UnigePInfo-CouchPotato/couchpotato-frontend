@@ -1,33 +1,29 @@
-<div class="h-100 d-flex flex-column justify-content-center">
-  <div class="mx-auto page-container d-flex flex-column container-fluid">
-    <div class="card card-heading">
-      <h3 class="text-center">Profile</h3>
+<div class="mx-auto d-flex flex-column container-fluid">
+    <h3 class="text-center">Profile</h3>
+  <div class="p-2">
+    <div class="d-flex flex-column justify-content-center">
+      <div class="p-2 text-center"><span>Username:</span> Bob</div>
     </div>
-    <div class="card p-3">
-      <div class="d-flex flex-column justify-content-center">
-        <div class="card p-2 text-center"><span>Username:</span> Bob</div>
-      </div>
-      <form  class="d-flex flex-column p-2">
-        <ng-container>
-          <div class="d-flex flex-row justify-content-center align-items-center m-0">
-            <ng-select
-              class="col-sm-12 px-1"
-              [items]="genresList"
-              [multiple]="true"
-              [maxSelectedItems]="3"
-              (change)="onChangeState($event, 0)"
-              [(ngModel)]="formControl.selectedGenres"
-              name="selectedGenres"
-              bindLabel="name"
-              bindValue="genre">
-            </ng-select>
-          </div>
-        </ng-container>
-      </form>
-      <br/>
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="btn btn-success" (click)="onFormSubmit()">Set preferences.</div>
-      </div>
+    <form  class="d-flex flex-column p-2">
+      <ng-container>
+        <div class="d-flex flex-row justify-content-center align-items-center m-0">
+          <ng-select
+            class="col-sm-12 px-1"
+            [items]="genresList"
+            [multiple]="true"
+            [maxSelectedItems]="3"
+            (change)="onChangeState($event, 0)"
+            [(ngModel)]="formControl.selectedGenres"
+            name="selectedGenres"
+            bindLabel="name"
+            bindValue="genre">
+          </ng-select>
+        </div>
+      </ng-container>
+    </form>
+    <br/>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="btn btn-success" (click)="onFormSubmit()">Set preferences.</div>
     </div>
   </div>
 </div>

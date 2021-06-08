@@ -1,7 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
+import { Endpoints } from 'src/app/data/endpoints';
 import { mockGenres } from 'src/app/data/mock-genres';
+import { ApiGatewayService } from 'src/app/services/api-gateway.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 /** The number of max genres that can be displayed. */
 const MAX_GENRES = 3;
@@ -33,10 +37,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   /** Creates an instance of the Profile Component
    * @param formBuilder The service used to build and handle forms
    */
-   constructor() { }
+  constructor(private apiGatewayService: ApiGatewayService) {
+  }
 
   ngOnInit(): void {
-    this.initControls();
     this.observableGenres = interval(10000)
       .pipe(startWith(0))
       .subscribe(async () => {
@@ -46,11 +50,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.observableGenres.unsubscribe();
-  }
-
-  /** Initializes the form's fields. */
-  initControls(): void {
-    // TODO request current selected, insert into controls
   }
 
   /** Submits the form. */
@@ -65,17 +64,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
    onChangeState(event: string, index: number) {
     this.formModified = true;
     console.log(this.formControl.selectedGenres);
-    /**
-    console.log(index);
-    // @ts-ignore
-    const control: AbstractControl = (this.formData.get('genres') as FormArray).get(['' + index, 'genre']);
-    if (control.value !== '') {
-      this.selectedGenres = this.selectedGenres.filter(x => x !== control.value);
-    }
-    control.patchValue(event);
-    (this.formData.get('genres') as FormArray).markAsTouched();
-    this.selectedGenres[index] = event;
-     */
     this.genresList = this.genresList.filter(x => !this.formControl.selectedGenres.includes(x));
   }
 }

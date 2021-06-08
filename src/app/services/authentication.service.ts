@@ -17,7 +17,7 @@ CAPTAIN'S LOG:
 export class AuthenticationService {
   private isUserAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private user$: BehaviorSubject<User> = new BehaviorSubject(null);
-  private token$: BehaviorSubject<string> = new BehaviorSubject(null);
+  /*private*/ token$: BehaviorSubject<string> = new BehaviorSubject(null);
   authorizationHeader$: BehaviorSubject<HttpHeaders> = new BehaviorSubject(new HttpHeaders());
 
   /** Creates an instance of AuthenticationService.
@@ -31,6 +31,9 @@ export class AuthenticationService {
         if (x) {
           this.retrieveUserData();
           this.retrieveToken();
+        } else {
+          this.user$.next(null);
+          this.token$.next(null);
         }
       }
     );

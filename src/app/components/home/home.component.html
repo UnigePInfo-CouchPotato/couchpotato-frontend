@@ -4,10 +4,11 @@
       <div class="d-flex justify-content-center my-4">
         <div class="app-title text-center card unselectable my-4">COUCHPOTATO</div>
       </div>
-      <div>{{header.value | json}}</div>
       <ng-container *ngIf="this.userAuthenticated; else notAuthenticatedTemplate">
-        <div class="d-flex flex-row">
-          <div class="col-md-6"><div>Welcome back!</div><div>Get Started</div></div>
+        <div class="d-flex authentication-container">
+          <div class="col-md-6">
+            <div class="btn btn-primary" (click)="this.getUserInfo()">test</div>
+            <div>Welcome back!</div><div>Get Started</div></div>
           <div class="col-md-6">
             <app-profile></app-profile>
           </div>
@@ -31,7 +32,9 @@
             <div class="description-image col-md-4"></div>
           </div>
           <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-right">
-            <div class="description-image col-md-4"></div>
+            <div class="description-image col-md-4 d-flex justify-content-center align-items-center">
+              <img class="img-thumb" src="assets/images/video-2.gif" alt="Our solution"/>
+            </div>
             <div class="description-text col-md-8">
               <h2>Our solution</h2>
               <p>Our team has devised a way to minimize conflict while searching for a movie and offers you <span class="highlight">"CouchPotato"</span>.</p>
