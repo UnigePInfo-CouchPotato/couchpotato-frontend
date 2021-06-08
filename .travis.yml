@@ -23,6 +23,10 @@ jobs:
     - npm install
     - npm update
     - npm run-script build --prod
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker build -t couchpotato-frontend/web-ui:latest .
+    - docker tag couchpotato-frontend/web-ui faysalsaber/web-ui:latest
+    - docker push faysalsaber/web-ui:latest
 before_install:
 - openssl aes-256-cbc -K $encrypted_1432bbc027c3_key -iv $encrypted_1432bbc027c3_iv
   -in auth_config.ts.enc -out auth_config.ts -d
@@ -34,8 +38,9 @@ before_install:
 - ssh-add ./deploy_key
 - ssh -i ./deploy_key saberfa0@129.194.10.127 pwd
 - nvm install v$NODE_VERSION
-after_success:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t couchpotato-frontend/web-ui:latest .
-- docker tag couchpotato-frontend/web-ui faysalsaber/web-ui:latest
-- docker push faysalsaber/web-ui:latest
+
+# safelist
+branches:
+  only:
+  - main
+  - staging
