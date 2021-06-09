@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /** Component used to display the main content of the website. */
 @Component({
@@ -6,9 +6,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main-body.component.html',
   styleUrls: ['./main-body.component.scss']
 })
-export class MainBodyComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class MainBodyComponent {
 }

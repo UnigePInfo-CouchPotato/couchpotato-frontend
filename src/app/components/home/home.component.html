@@ -5,10 +5,11 @@
         <div class="app-title text-center card unselectable my-4">COUCHPOTATO</div>
       </div>
       <ng-container *ngIf="this.userAuthenticated; else notAuthenticatedTemplate">
-        <div class="d-flex authentication-container">
-          <div class="col-md-6">
-            <div class="btn btn-primary" (click)="this.getUserInfo()">test</div>
-            <div>Welcome back!</div><div>Get Started</div></div>
+        <div class="d-flex authentication-container py-2">
+          <div class="col-md-6  d-flex flex-column  justify-content-center align-items-center">
+              <div>Welcome back to CouchPotato</div>
+              <div class="btn btn-primary unselectable">Get started</div>
+          </div>
           <div class="col-md-6">
             <app-profile></app-profile>
           </div>
@@ -29,7 +30,9 @@
               <br/>
               <p>You are not alone!</p>
             </div>
-            <div class="description-image col-md-4"></div>
+            <div class="description-image col-md-4 d-flex justify-content-center align-items-center">
+              <img class="img-thumb" src="assets/images/pic-1.svg" alt="Our solution"/>
+            </div>
           </div>
           <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-right">
             <div class="description-image col-md-4 d-flex justify-content-center align-items-center">

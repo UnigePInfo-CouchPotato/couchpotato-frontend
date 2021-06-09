@@ -1,6 +1,6 @@
 import { mockRoomIds } from './../data/mock-roomids';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { PrestoreRoomInfo } from '../interfaces/prestore-room-info';
 
 @Injectable({
@@ -32,7 +32,7 @@ export class RoomManagementService {
     this.isRoomOwner = true;
     this.currentRoomInfo = {isRoomOwner: this.isRoomOwner, roomId: this.currentRoomId};
     this.currentRoomObservable.next(this.currentRoomInfo);
-    // TODO RJXS
+    // TODO Service!
     localStorage.setItem('roomInfo', JSON.stringify(this.currentRoomInfo));
   }
 

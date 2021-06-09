@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 /**
@@ -19,20 +19,19 @@ export class HeaderComponent implements OnInit {
 
   profileInfoShown: boolean = false;
 
-  // TODO Remove
-  private spin = false;
-
   /**
    * Creates an instance of HeaderComponent.
    *
    * @param router The Router to observe the url path from.
    */
-  constructor(private router: Router, private auth: AuthenticationService) { }
+  constructor(private router: Router,
+              private auth: AuthenticationService,
+              private ref: ChangeDetectorRef) { }
 
   /** Initialises the component. */
   ngOnInit(): void {
     this.auth.isUserAuthenticatedObs$.subscribe({
-      next: (v: boolean) => this.authenticated = v
+      next: (v: boolean) => { this.authenticated = v, this.ref.markForCheck(); }
     });
   }
 

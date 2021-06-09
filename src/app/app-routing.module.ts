@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthenticationGuardService as AuthenticationGuard } from './services/authentication-guard.service';
-import { ReverseAuthenticationGuard } from './services/reverse-authentication-guard.service';
 import { RoomComponent } from './components/room/room.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 

@@ -1,4 +1,7 @@
-export class User {
+export interface UserPreferences {
+  preferences: number[];
+}
+export interface Auth0User {
   /** Client ID as provided by the platform. */
   aud: string;
 
@@ -31,6 +34,9 @@ export class User {
 
   /** Claim identifying the principal that is thesubject of the JWT. */
   sub: string;
+
+  /** Auth0 Metadata structure... */
+  'https://pinfo2.unige.ch/metadata'?: UserPreferences;
 
   /** Time the information was last updated. */
   updated_at: string;

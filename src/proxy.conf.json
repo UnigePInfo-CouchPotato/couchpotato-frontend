@@ -1,0 +1,7 @@
+{
+  "*": {
+      "target": "https://pinfo2.unige.ch/api",
+      "secure": true,
+      "logLevel": "debug"
+  }
+}

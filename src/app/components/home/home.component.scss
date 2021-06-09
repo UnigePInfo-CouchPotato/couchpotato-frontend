@@ -17,6 +17,12 @@
   min-height: 25vh;
   justify-content: center;
   align-items: center;
+  text-align: justify;
+
+  span.highlight {
+    transition: color, background-color, box-shadow, padding;
+    transition-duration: .3s;
+  }
 }
 
 .description-row:hover {
@@ -25,7 +31,7 @@
       color: #ff6bba;
       box-shadow: 2px -2px #ff41a0;
       background-color: #652EC7;
-      padding: 3px;
+      padding: 0px 3px;
       border-radius: 5px;
     }
   }

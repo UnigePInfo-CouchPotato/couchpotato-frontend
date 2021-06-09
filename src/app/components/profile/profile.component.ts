@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
-import { startWith } from 'rxjs/operators';
-import { Endpoints } from 'src/app/data/endpoints';
-import { mockGenres } from 'src/app/data/mock-genres';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { interval, Subscription, BehaviorSubject } from 'rxjs';
+import { filter, startWith } from 'rxjs/operators';
+import { Auth0User } from 'src/app/interfaces/auth0-user';
 import { ApiGatewayService } from 'src/app/services/api-gateway.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -14,9 +12,12 @@ const MAX_GENRES = 3;
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnDestroy {
   /** The subscription to the backend service to acquire the list of languages. */
   observableGenres: Subscription = new Subscription();
+  observableSelectedGenres: Subscription = new Subscription();
+
+  user$: BehaviorSubject<Auth0User> = new BehaviorSubject(null);
 
   /** The number of languages currently set to be displayed on the subgraph. */
   numberOfAvailableGenres: number = 2;
@@ -29,7 +30,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   };
 
   /** The full list of genres. */
-  genresList: string[] = mockGenres.map(x => x.name);
+  genresList: string[] = [];
+  selectedGenresBackup: string[] = [];
+  dataAcquired: boolean = false;
 
   /** Whether or not the form has been modified. */
   formModified = false;
@@ -37,33 +40,52 @@ export class ProfileComponent implements OnInit, OnDestroy {
   /** Creates an instance of the Profile Component
    * @param formBuilder The service used to build and handle forms
    */
-  constructor(private apiGatewayService: ApiGatewayService) {
-  }
+  constructor(private apiGatewayService: ApiGatewayService, private auth: AuthenticationService, private ref: ChangeDetectorRef) {
+    this.user$.next(this.auth.user);
+    this.auth.userObs$.subscribe({
+      next: (u: Auth0User) => this.user$.next(u)
+    });
 
-  ngOnInit(): void {
-    this.observableGenres = interval(10000)
+    this.observableGenres = interval(1000)
       .pipe(startWith(0))
-      .subscribe(async () => {
-        this.genresList = mockGenres.map(x => x.name).filter(x => !this.formControl.selectedGenres.includes(x));
+      .pipe(filter(_ => this.apiGatewayService.movieGenres != null && !this.dataAcquired))
+      .subscribe({
+        next: async () => {
+        this.genresList = this.apiGatewayService.movieGenres?.map(x => x.name) ?? [];
+        this.ref.markForCheck();
+      }
+    });
+
+    this.observableSelectedGenres = interval(1000)
+      .pipe(startWith(0))
+      .pipe(filter(_ => this.apiGatewayService.movieGenres != null && this.auth.preferences != null && !this.dataAcquired))
+      .subscribe({
+        next: async () => {
+          this.formControl.selectedGenres = this.apiGatewayService.movieGenres
+                                                                  ?.filter(x => this.auth.preferences.includes(x.id))
+                                                                  .map(x => x.name) ?? [];
+          this.dataAcquired = true;
+          this.ref.markForCheck();
+        }
       });
   }
 
   ngOnDestroy(): void {
     this.observableGenres.unsubscribe();
+    this.observableSelectedGenres.unsubscribe();
   }
 
   /** Submits the form. */
   onFormSubmit() {
+    if (this.formModified) {
+      const newSelectedGenres = this.apiGatewayService.movieGenres.filter(m => this.formControl.selectedGenres.includes(m.name));
+      this.apiGatewayService.updateUserPreferences(newSelectedGenres);
+    }
+
   }
 
-  /** Function fired whenever the state of the form changes.
-   *
-   * @param event The new value for that form element.
-   * @param index Which element of that array was modified.
-   */
-   onChangeState(event: string, index: number) {
+  /** Function fired whenever the state of the form changes. */
+   onChangeState() {
     this.formModified = true;
-    console.log(this.formControl.selectedGenres);
-    this.genresList = this.genresList.filter(x => !this.formControl.selectedGenres.includes(x));
   }
 }

@@ -1,4 +1,4 @@
-import { AfterViewChecked, NgModule, AfterViewInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
