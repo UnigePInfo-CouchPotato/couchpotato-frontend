@@ -27,6 +27,7 @@ jobs:
     - docker build -t couchpotato-frontend/web-ui:latest .
     - docker tag couchpotato-frontend/web-ui faysalsaber/web-ui:latest
     - docker push faysalsaber/web-ui:latest
+    - ssh -i ./deploy_key saberfa0@129.194.10.127 "cd couchpotato/helm-charts/test/couchpotato-backend && source exp.sh"  
 before_install:
 - openssl aes-256-cbc -K $encrypted_1432bbc027c3_key -iv $encrypted_1432bbc027c3_iv
   -in auth_config.ts.enc -out auth_config.ts -d
