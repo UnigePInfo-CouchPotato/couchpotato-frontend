@@ -25,8 +25,7 @@ export class AuthenticationService {
   private accessToken$: BehaviorSubject<Auth0AccessToken> = new BehaviorSubject(null);
   private accessTokenAcquisitionTime: number;
 
-  /*private*/ token$: BehaviorSubject<string> = new BehaviorSubject(null);
-  authorizationHeader$: BehaviorSubject<HttpHeaders> = new BehaviorSubject(null);
+  private token$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   /** Creates an instance of AuthenticationService.
    *
@@ -46,14 +45,6 @@ export class AuthenticationService {
           this.token$.next(null);
         }
       }
-    });
-
-    this.token$.subscribe({
-      next: t => this.authorizationHeader$.next(
-        {
-          Authorization: 'Bearer ' + t
-        }
-      )
     });
   }
 
@@ -89,6 +80,13 @@ export class AuthenticationService {
   /** Attempts to login a user. */
   attemptLogin(): void {
     this.spinnerService.startSpinning();
+    this.authNulService.loginWithPopup({ prompt: 'login' });
+    this.spinnerService.stopSpinning();
+  }
+
+  /** Attempts to register a user. */
+  attemptSignup(): void {
+    this.spinnerService.startSpinning();
     this.authNulService.loginWithPopup({ screen_hint: 'signup' });
     this.spinnerService.stopSpinning();
   }
@@ -118,7 +116,7 @@ export class AuthenticationService {
   }
 
   get preferences(): number[] {
-    return this.user$.value?.['https://pinfo2.unige.ch/metadata']?.preferences;
+    return this.user$.value?.['https://pinfo2.unige.ch/metadata']?.preferences ?? [];
   }
 
   async retrieveAccessToken(): Promise<Auth0AccessToken> {

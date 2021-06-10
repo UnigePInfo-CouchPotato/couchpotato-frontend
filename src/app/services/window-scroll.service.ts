@@ -11,6 +11,5 @@ export class WindowScrollService {
 
   updateScrollY(value: number): void {
     this.scrollY.next(value);
-    console.log(`NewY: ${value}`);
   }
 }

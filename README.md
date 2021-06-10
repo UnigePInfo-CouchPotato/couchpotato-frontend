@@ -10,6 +10,22 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+## Documentation (CompoDoc)
+
+```bash
+compodoc -p tsconfig.doc.json -s
+```
+
+Then navigate to `http://localhost:8080`.
+
+## SonarQube
+
+Run the SonarQube Docker image with port 9000 facing outwards.
+
+```bash
+sonar-scanner.bat -D"sonar.projectKey=$PROJECT_KEY" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=$PROJECT_LOGIN"
+```
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.

@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
 import { interval, Subscription, BehaviorSubject } from 'rxjs';
 import { filter, startWith } from 'rxjs/operators';
 import { Auth0User } from 'src/app/interfaces/auth0-user';
@@ -13,6 +14,8 @@ const MAX_GENRES = 3;
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnDestroy {
+  @Input() showError: boolean = false;
+
   /** The subscription to the backend service to acquire the list of languages. */
   observableGenres: Subscription = new Subscription();
   observableSelectedGenres: Subscription = new Subscription();
@@ -40,7 +43,9 @@ export class ProfileComponent implements OnDestroy {
   /** Creates an instance of the Profile Component
    * @param formBuilder The service used to build and handle forms
    */
-  constructor(private apiGatewayService: ApiGatewayService, private auth: AuthenticationService, private ref: ChangeDetectorRef) {
+  constructor(private apiGatewayService: ApiGatewayService,
+              private auth: AuthenticationService,
+              private ref: ChangeDetectorRef) {
     this.user$.next(this.auth.user);
     this.auth.userObs$.subscribe({
       next: (u: Auth0User) => this.user$.next(u)
@@ -79,7 +84,13 @@ export class ProfileComponent implements OnDestroy {
   onFormSubmit() {
     if (this.formModified) {
       const newSelectedGenres = this.apiGatewayService.movieGenres.filter(m => this.formControl.selectedGenres.includes(m.name));
-      this.apiGatewayService.updateUserPreferences(newSelectedGenres);
+      if (newSelectedGenres.length != 0) {
+        this.apiGatewayService.updateUserPreferences(newSelectedGenres).then(
+          _ => window.location.reload()
+        );
+      } else {
+        this.showError = true;
+      }
     }
 
   }

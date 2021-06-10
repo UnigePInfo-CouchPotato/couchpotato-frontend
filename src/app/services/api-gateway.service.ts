@@ -32,21 +32,28 @@ export class ApiGatewayService {
     return this.genres.value;
   }
 
+  /** Update a user's preferences. Returns whether or not the update was successful.
+   *
+   * @param preferences The current of genre id's set as "preferences" by the user.
+   */
   async updateUserPreferences(preferences: MovieGenre[]): Promise<boolean> {
     if (this.auth.isAuthenticated) {
       const accessToken = await this.auth.retrieveAccessToken();
-      console.log(accessToken);
-      this.http.get(
+      return this.http.patch(
         Endpoints.AUTH0_MANAGE_METADATA(this.auth.user.sub),
         {
-          headers: {
-            Authorization: `Bearer ${accessToken.access_token}`
+          user_metadata: {
+            preferences: preferences.map(x => x.id)
           }
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken.access_token}`
+          },
+          observe: 'response'
         }
-      ).subscribe({
-        next: x => console.dir(x)
-      });
-      return true;
+      ).toPromise().then(response => response.status == 200);
     } else {
       return false;
     }
