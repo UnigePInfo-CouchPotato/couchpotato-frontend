@@ -1,5 +1,18 @@
 <div class="h-100 d-flex flex-column justify-content-center">
-  <div class="mx-auto page-container d-flex flex-column container-fluid">
+  <div class="mx-auto d-flex flex-row container-fluid">
+    <div class="col-md-8 mx-auto d-flex flex-column">
+      <div>
+        <app-stage-display></app-stage-display>
+      </div>
+      <ng-container [ngSwitch]="this.stage">
+        <div *ngSwitchCase="0">
+          <app-room-join-create-choice [stage$]="this.stage$"></app-room-join-create-choice>
+        </div>
+        <div *ngSwitchCase="1">Stage 1</div>
+      </ng-container>
+    </div>
+
+    <!--
     <ng-container *ngIf="this.stage == 0; then thenTemplate; else elseTemplate"></ng-container>
     <ng-template #thenTemplate>
       <div class="card card-heading">
@@ -125,5 +138,6 @@
         </ng-template>
       </ng-template>
     </ng-template>
+    -->
   </div>
 </div>

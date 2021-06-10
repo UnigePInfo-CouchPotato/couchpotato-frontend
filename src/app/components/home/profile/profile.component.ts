@@ -2,9 +2,9 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
 import { interval, Subscription, BehaviorSubject } from 'rxjs';
 import { filter, startWith } from 'rxjs/operators';
-import { Auth0User } from 'src/app/interfaces/auth0-user';
-import { ApiGatewayService } from 'src/app/services/api-gateway.service';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Auth0User } from 'src/app/interfaces/auth0/auth0-user';
+import { ApiGatewayService } from 'src/app/services/api-gateway/api-gateway.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 /** The number of max genres that can be displayed. */
 const MAX_GENRES = 3;

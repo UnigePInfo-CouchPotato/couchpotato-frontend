@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { RoomManagementService } from 'src/app/services/room-management.service';
+import { BehaviorSubject } from 'rxjs';
+import { RoomManagementService } from 'src/app/services/room-management/room-management.service';
 
 @Component({
   selector: 'app-room',
@@ -8,13 +9,23 @@ import { RoomManagementService } from 'src/app/services/room-management.service'
   styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit {
+  stage$: BehaviorSubject<number> = new BehaviorSubject(0);
   stage: number = 0;
   roomId: string;
 
   /** The form data */
   formDataRoomId: FormGroup;
 
-  constructor(private roomService: RoomManagementService, private formBuilder: FormBuilder) { }
+  constructor(private roomService: RoomManagementService,
+              private formBuilder: FormBuilder,
+              private ref: ChangeDetectorRef) {
+    this.stage$.subscribe({
+      next: (value: number) => {
+        this.stage = value;
+        this.ref.markForCheck();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.formDataRoomId = this.formBuilder.group({
@@ -43,6 +54,6 @@ export class RoomComponent implements OnInit {
   }
 
   get isRoomOwner() {
-    return this.roomService.isRoomOwner;
+    return this.roomService.isRoomAdmin;
   }
 }

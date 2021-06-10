@@ -22,7 +22,8 @@ a {
 }
 
 .btn {
-  font-size: larger;
+  font-size: larger !important;
+  text-transform: uppercase;
 }
 
 .description-column {
@@ -43,6 +44,7 @@ a {
     h2 {
       text-decoration: underline;
       display: inline-block;
+      text-align: center;
       padding: 4px;
       margin-bottom: 5px;
     }
@@ -50,7 +52,7 @@ a {
 
   span.highlight, h2 {
     transition: color, background-color, box-shadow, padding;
-    transition-duration: .3s;
+    transition-duration: .4s;
     padding: 0 4px;
   }
 }
@@ -83,9 +85,9 @@ a {
   span {
     padding: 0 4px;
 
-    color: rgb(255, 145, 0);
+    color: #ff6bba;
     box-shadow: 2px -2px #ea00ff;
-    background-color: #00da12;
+    background-color: #00ff15;
     text-transform: uppercase;
     border-radius: 4px;
   }
@@ -94,6 +96,11 @@ a {
 .img-thumb {
   width: 100%;
   max-width: 300px;
+}
+
+.img-thumb-smaller {
+  width: 100%;
+  max-width: 150px;
 }
 
 .starts-hidden { visibility: hidden; }
@@ -110,16 +117,10 @@ a {
   opacity: 0;
 }
 
-
-
-.authentication-container {
-  flex-direction: row;
-}
-
 /* PHONE */
 
 @media screen and (max-width: 768px) {
-  .authentication-container { flex-direction: column-reverse !important; }
+  .authentication-container, .not-authentication-container { flex-direction: column !important; }
 
   .description-row:not(.flipped) { flex-direction: column-reverse !important; }
 
