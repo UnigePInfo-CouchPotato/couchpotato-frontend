@@ -37,5 +37,5 @@ export const environment = {
     allowedList: [`${apiUri}/*`],
   },
   api_rooms: 'https://pinfo2.unige.ch/api/v1/rooms',
-  api_recommendations: 'https://pinfo2.unige.ch/api/v1/recommendations',
+  api_recommendations: 'https://pinfo2.unige.ch/api/v1/recommendation',
 };
