@@ -1,0 +1,27 @@
+<div class="mx-auto d-flex flex-column container-fluid">
+    <h3 class="text-center">User {{ user$.value?.nickname }}</h3>
+  <div class="p-2">
+    <form class="d-flex flex-column py-1 px-2">
+      <ng-container>
+        <div class="d-flex flex-row justify-content-center align-items-center m-0">
+          <ng-select
+            class="col-sm-12 px-1"
+            [items]="genresList"
+            [multiple]="true"
+            [maxSelectedItems]="3"
+            (change)="onChangeState()"
+            [(ngModel)]="formControl.selectedGenres"
+            name="selectedGenres"
+            bindLabel="name"
+            bindValue="genre">
+          </ng-select>
+        </div>
+      </ng-container>
+      <div class="small error" *ngIf="this.showError">Please select between 1 and 3 genres to view and set them.</div>
+    </form>
+    <br/>
+    <div class="d-flex justify-content-center align-items-center" >
+      <div class="btn btn-success" [class.disabled]="!this.formModified" (click)="onFormSubmit()">Set preferences</div>
+    </div>
+  </div>
+</div>

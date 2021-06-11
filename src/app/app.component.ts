@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
-import { AuthenticationService } from './services/authentication.service';
-import { WindowScrollService } from './services/window-scroll.service';
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { WindowScrollService } from './services/ui-services/window-scroll.service';
 
 /** The root of the application. */
 @Component({

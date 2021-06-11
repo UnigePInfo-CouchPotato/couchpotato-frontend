@@ -36,6 +36,6 @@ export const environment = {
   httpInterceptor: {
     allowedList: [`${apiUri}/*`],
   },
-  api_rooms: 'http://localhost:9000/rooms',
+  api_rooms: 'http://localhost:9080/rooms',
   api_recommendations: 'http://localhost:12080/recommendation'
 };

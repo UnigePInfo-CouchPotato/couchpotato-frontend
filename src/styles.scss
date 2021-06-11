@@ -1,8 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
-@import "~@fontsource/roboto";
 @import "~@fontsource/dosis"; // Weight 500
-//@import "~@fontsource/anton"; // Weight 500
+@import "~@fontsource/roboto"; // Defaults to weight 400
 
 @import "assets/styles/ng-select-overrides.scss";
 
@@ -65,6 +64,10 @@ h1 {
 
 ul.nomargin {
   margin: 0;
+}
+
+.btn {
+  font: 14px 'Roboto', sans-serif !important;
 }
 
 .media-container {
