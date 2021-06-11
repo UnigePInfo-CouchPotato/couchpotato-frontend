@@ -1,0 +1,12 @@
+<div class="w-100 d-flex flex-row justify-content-center align-items-center movie-container p-2">
+  <div>
+    <img src="https://image.tmdb.org/t/p/original/{{ this.movie.poster_path }}" alt="poster"/>
+  </div>
+  <div class="col-sm-9 d-flex flex-column justify-content-center align-items-center">
+    <div class="col-sm-12 movie-info d-flex flex-row justify-content-center align-items-center">
+      <span class="col-sm-9 title">{{ this.movie.title }} <span *ngIf="this.movie.title != this.movie.original_title">({{this.movie.original_title}})</span></span>
+      <span class="col-sm-3 release">Released: {{ this.movie.release_date}}</span>
+    </div>
+    <div class="col-sm-12 description">{{ this.movie.overview }}</div>
+  </div>
+</div>

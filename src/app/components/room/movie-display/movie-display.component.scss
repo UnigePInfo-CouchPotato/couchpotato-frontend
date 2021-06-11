@@ -1,0 +1,39 @@
+img {
+  max-height: 200px;
+}
+
+.title {
+  font-size: larger;
+  padding: 10px 0;
+  span {}
+}
+
+.release {
+  text-align: right;
+}
+
+.description {
+  text-align: justify;
+}
+
+.movie-container {
+  border-radius: 10px;
+  border: 1px solid purple;
+}
+
+@media screen and (max-width: 768px) {
+  .movie-container {
+    flex-direction: column !important;
+  }
+  .movie-info {
+    flex-direction: column !important;
+  }
+
+  .title {
+    text-align: center;
+  }
+  .release {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}

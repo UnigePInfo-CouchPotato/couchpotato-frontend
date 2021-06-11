@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { SpinnerService } from 'src/app/services/ui-services/spinner.service';
 
 @Component({
@@ -9,9 +9,9 @@ import { SpinnerService } from 'src/app/services/ui-services/spinner.service';
 export class HorizontalSpinnerComponent {
   showSpinner: boolean = false;
 
-  constructor(private spinnerService: SpinnerService) {
+  constructor(private spinnerService: SpinnerService, private ref: ChangeDetectorRef) {
     this.spinnerService.spinningListener.subscribe({
-      next: (value: boolean) => this.showSpinner = value
+      next: (value: boolean) => { this.showSpinner = value; this.ref.markForCheck(); }
     });
   }
 }

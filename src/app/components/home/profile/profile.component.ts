@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
 import { interval, Subscription, BehaviorSubject } from 'rxjs';
 import { filter, startWith } from 'rxjs/operators';

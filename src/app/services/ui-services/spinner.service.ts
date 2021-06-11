@@ -11,8 +11,12 @@ export class SpinnerService {
   get spinningListener(): Observable<boolean> {
     return this.isSpinning.asObservable()
       .pipe(
-        map((val: number) =>  val != 0)
+        map((val: number) => val != 0)
       );
+  }
+
+  constructor() {
+    this.isSpinning.subscribe(console.log);
   }
 
   private get nSpins(): number { return this.isSpinning.getValue(); }

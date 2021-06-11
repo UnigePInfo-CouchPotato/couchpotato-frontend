@@ -22,6 +22,11 @@ import { environment as env } from 'src/environments/environment';
 import { RoomJoinCreateChoiceComponent } from './components/room/room-join-create-choice/room-join-create-choice.component';
 import { RoomMainComponent } from './components/room/room-main/room-main.component';
 import { StageDisplayComponent } from './components/room/stage-display/stage-display.component';
+import { RoomWaitingRoomComponent } from './components/room/room-waiting-room/room-waiting-room.component';
+import { RoomResultsBufferComponent } from './components/room/room-results-buffer/room-results-buffer.component';
+import { MovieVoteComponent } from './components/room/movie-vote/movie-vote.component';
+import { MovieFinalBufferComponent } from './components/room/movie-final-buffer/movie-final-buffer.component';
+import { MovieFinalViewComponent } from './components/room/movie-final-view/movie-final-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +40,12 @@ import { StageDisplayComponent } from './components/room/stage-display/stage-dis
     HorizontalSpinnerComponent,
     RoomJoinCreateChoiceComponent,
     RoomMainComponent,
-    StageDisplayComponent
+    StageDisplayComponent,
+    RoomWaitingRoomComponent,
+    RoomResultsBufferComponent,
+    MovieVoteComponent,
+    MovieFinalBufferComponent,
+    MovieFinalViewComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'couchpotato-frontend' }),

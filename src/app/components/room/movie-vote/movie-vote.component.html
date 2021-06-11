@@ -1,0 +1,21 @@
+<app-room-main>
+  <div class="w-100 d-flex flex-row justify-content-center align-items-center">
+    <div class="w-100 col-sm-12 d-flex flex-column justify-content-around align-items-center">
+      <div *ngFor="let m of this.movies; let i = index" class="w-100 mb-4">
+        <div class="mb-2">
+          <app-movie-display [movie]="m"></app-movie-display>
+        </div>
+        <div class="d-flex flex-row justify-content-center align-items-center">
+          <div id="left-{{i}}" class="vote-button"><em class="fas fa-chevron-up" (click)="setVote(i, this.movies[i].id, +1)"></em></div>
+          <div class="mx-4">Vote</div>
+          <div id="right-{{i}}" class="vote-button"><em class="fas fa-chevron-down" (click)="setVote(i, this.movies[i].id, -1)"></em></div>
+        </div>
+      </div>
+      <div class="btn btn-primary" (click)="postVotes()" *ngIf="!this.showLoading">Set Vote</div>
+      <div *ngIf="this.showError" class="alert alert-danger py-2 px-3">{{ this.errorText }}</div>
+      <div *ngIf="this.showLoading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+</app-room-main>
