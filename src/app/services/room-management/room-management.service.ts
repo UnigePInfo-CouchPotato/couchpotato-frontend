@@ -1,9 +1,8 @@
 import { GetRoomFinalMovieResponse, StartVoteResponse, VoteResponse } from './../../interfaces/api-responses/responses';
-import { CanJoinResponse, CanVoteResponse, CreateRoomResponse, EndJoinResponse, EndVoteResponse, GetRoomMoviesResponse, GetRoomResponse, GetRoomUsersResponse, JoinRoomResponse } from 'src/app/interfaces/api-responses/responses';
+import { CanJoinResponse, CanVoteResponse, CreateRoomResponse, EndJoinResponse, EndVoteResponse, GetRoomMoviesResponse, GetRoomResponse, JoinRoomResponse } from 'src/app/interfaces/api-responses/responses';
 import { HttpStatusCode } from 'src/app/interfaces/http-status-code';
-import { mockRoomIds } from '../../data/mock-roomids';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { ApiGatewayService } from '../api-gateway/api-gateway.service';
 import { Router } from '@angular/router';
@@ -15,8 +14,6 @@ import { VoteChoices } from 'src/app/interfaces/api-responses/types/vote-choice'
   providedIn: 'root'
 })
 export class RoomManagementService {
-  roomIds: string[] = mockRoomIds;
-
   private roomId$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   roomIdObs$: Observable<string>;
@@ -177,8 +174,4 @@ export class RoomManagementService {
   get roomId(): string { return this.roomId$.value; }
 
   get isRoomAdmin(): boolean { return this.isRoomAdmin$.value; }
-
-  exitRoom() {
-
-  }
 }

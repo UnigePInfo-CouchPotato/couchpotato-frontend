@@ -11,12 +11,15 @@ import { CloseRoomResponse, DeleteRoomResponse, JoinRoomResponse, IsRoomAdminRes
 import { VoteChoices } from 'src/app/interfaces/api-responses/types/vote-choice';
 import { SpinnerService } from '../ui-services/spinner.service';
 
+/** Service that acts as an inbetween from the API to the Frontend. */
 @Injectable({
   providedIn: 'root'
 })
 export class ApiGatewayService {
+  /** Observable on the movie genres. */
   private genres: BehaviorSubject<MovieGenre[]> = new BehaviorSubject(null);
 
+  /** Instantiates the ApiGatewayService */
   constructor(private http: HttpClient,
               private auth: AuthenticationService,
               private spinner: SpinnerService) {
@@ -37,6 +40,7 @@ export class ApiGatewayService {
     );
   }
 
+  /** Retrieve the list of movie genres (as seen by TMDB). */
   get movieGenres(): MovieGenre[] {
     return this.genres.value;
   }
@@ -70,6 +74,7 @@ export class ApiGatewayService {
     }
   }
 
+  /** Generic response getter for all of the GET requests to the API. */
   private async getResponse<T>(resource: string): Promise<[HttpStatusCode, T]> {
     this.spinner.startSpinning();
     const header: HttpHeaders = this.auth.authorizationHttpHeader;

@@ -1,5 +1,6 @@
 import { UserPreferences } from './auth0-user-preferences';
 
+/** Represents a user as seen by Auth0. */
 export interface Auth0User {
   /** Client ID as provided by the platform. */
   aud: string;

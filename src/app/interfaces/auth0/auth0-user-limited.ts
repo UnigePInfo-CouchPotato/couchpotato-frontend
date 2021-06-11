@@ -1,5 +1,6 @@
 import { UserPreferences } from './auth0-user-preferences';
 
+/** Represents a limited view of a user as seen by Auth0. */
 export interface Auth0UserLimited {
   /** Claim identifying the principal that is thesubject of the JWT. */
   sub: string;
