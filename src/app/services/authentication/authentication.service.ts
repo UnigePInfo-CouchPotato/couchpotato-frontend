@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SpinnerService } from './spinner.service';
+import { SpinnerService } from '../ui-services/spinner.service';
 import { AuthService } from '@auth0/auth0-angular';
-import { Auth0User } from '../interfaces/auth0-user';
-import { HttpHeaders } from '../interfaces/http-headers';
-import { Auth0AccessToken } from '../interfaces/auth0-access-token';
+import { Auth0User } from '../../interfaces/auth0/auth0-user';
+import { HttpHeaders } from '../../interfaces/http-headers';
+import { Auth0AccessToken } from '../../interfaces/auth0/auth0-access-token';
 import { HttpClient } from '@angular/common/http';
-import { Endpoints } from '../data/endpoints';
+import { Endpoints } from '../../data/endpoints';
 
 import { environment as env } from 'src/environments/environment';
 /*
@@ -91,7 +91,7 @@ export class AuthenticationService {
     this.spinnerService.stopSpinning();
   }
 
-  retrieveToken(): void {
+  private retrieveToken(): void {
     this.spinnerService.startSpinning();
     this.authNulService.getAccessTokenSilently().subscribe({
       next: token => this.token$.next(token)

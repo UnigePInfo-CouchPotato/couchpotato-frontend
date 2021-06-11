@@ -1,5 +1,32 @@
-<div class="h-100 d-flex flex-column justify-content-center">
-  <div class="mx-auto page-container d-flex flex-column container-fluid">
+<div class="my-4 d-flex flex-column justify-content-center align-items-center my-auto c">
+  <div class="w-100 mx-auto d-flex flex-row">
+    <div class="col-md-8 mx-auto d-flex flex-column">
+      <div>
+        <app-stage-display [stage]="this.stage" [isAdmin]="this.isAdmin"></app-stage-display>
+      </div>
+      <ng-container [ngSwitch]="this.stage">
+        <div *ngSwitchCase="0">
+          <app-room-join-create-choice [stage$]="this.stage$"></app-room-join-create-choice>
+        </div>
+        <div *ngSwitchCase="1">
+          <app-room-waiting-room [stage$]="this.stage$" [isAdmin]="this.isAdmin" [roomId]="this.roomId"></app-room-waiting-room>
+        </div>
+        <div *ngSwitchCase="2">
+          <app-room-results-buffer [stage$]="this.stage$" [isAdmin]="this.isAdmin" [roomId]="this.roomId"></app-room-results-buffer>
+        </div>
+        <div *ngSwitchCase="3">
+          <app-movie-vote [stage$]="this.stage$" [isAdmin]="this.isAdmin" [roomId]="this.roomId"></app-movie-vote>
+        </div>
+        <div *ngSwitchCase="4">
+          <app-movie-final-buffer [stage$]="this.stage$" [isAdmin]="this.isAdmin" [roomId]="this.roomId"></app-movie-final-buffer>
+        </div>
+        <div *ngSwitchCase="5">
+          <app-movie-final-view [stage$]="this.stage$" [isAdmin]="this.isAdmin" [roomId]="this.roomId"></app-movie-final-view>
+        </div>
+      </ng-container>
+    </div>
+
+    <!--
     <ng-container *ngIf="this.stage == 0; then thenTemplate; else elseTemplate"></ng-container>
     <ng-template #thenTemplate>
       <div class="card card-heading">
@@ -125,5 +152,6 @@
         </ng-template>
       </ng-template>
     </ng-template>
+    -->
   </div>
 </div>

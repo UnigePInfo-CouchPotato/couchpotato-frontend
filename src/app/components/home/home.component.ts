@@ -1,6 +1,6 @@
-import { WindowScrollService } from './../../services/window-scroll.service';
+import { WindowScrollService } from '../../services/ui-services/window-scroll.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 

@@ -21,7 +21,7 @@
     "@angular/router": "~11.1.2",
     "@auth0/auth0-angular": "^1.5.1",
     "@fontsource/dosis": "^4.3.0",
-    "@fontsource/roboto": "^4.3.0",
+    "@fontsource/roboto": "^4.4.5",
     "@ng-select/ng-select": "^6.1.0",
     "bootstrap": "^4.5.3",
     "ng2-animate-on-scroll": "^2.2.1",

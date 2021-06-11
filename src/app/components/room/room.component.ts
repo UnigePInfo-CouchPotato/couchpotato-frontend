@@ -1,48 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { RoomManagementService } from 'src/app/services/room-management.service';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { RoomManagementService } from 'src/app/services/room-management/room-management.service';
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.scss']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnDestroy {
+  stage$: BehaviorSubject<number> = new BehaviorSubject(0);
   stage: number = 0;
   roomId: string;
+  isAdmin: boolean;
 
-  /** The form data */
-  formDataRoomId: FormGroup;
+  private stageSubscription: Subscription;
+  private adminSubscription: Subscription;
+  private roomIdSubscription: Subscription;
 
-  constructor(private roomService: RoomManagementService, private formBuilder: FormBuilder) { }
+  constructor(private roomService: RoomManagementService,
+              private ref: ChangeDetectorRef) {
+    this.stageSubscription = this.stage$.subscribe({
+      next: (value: number) => {
+        this.stage = value;
+        this.ref.markForCheck();
+      }
+    });
 
-  ngOnInit(): void {
-    this.formDataRoomId = this.formBuilder.group({
-      roomId: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(5),
-        Validators.minLength(5),
-        Validators.pattern(/^[0-9A-Z]*$/)
-      ])
+    this.isAdmin = this.roomService.isRoomAdmin;
+    this.adminSubscription = this.roomService.isRoomAdminObs$.subscribe({
+      next: (v: boolean) => { this.isAdmin = v; this.ref.markForCheck(); }
+    });
+
+    this.roomIdSubscription = this.roomService.roomIdObs$.subscribe({
+      next: (roomId: string) => { this.roomId = roomId; this.ref.markForCheck(); }
     });
   }
 
-  onFormRoomIdSubmit() {
-    if (this.formDataRoomId.valid) {
-      this.roomId = this.formDataRoomId.get('roomId').value;
-      this.setStage(3);
-    }
-  }
-
-  setStage(stageNumber: number) {
-    this.stage = stageNumber;
-    if (this.stage == 1) {
-      this.roomService.createRoom();
-      this.roomId = this.roomService.roomId;
-    }
-  }
-
-  get isRoomOwner() {
-    return this.roomService.isRoomOwner;
+  ngOnDestroy(): void {
+    this.stageSubscription.unsubscribe();
+    this.adminSubscription.unsubscribe();
+    this.roomIdSubscription.unsubscribe();
   }
 }

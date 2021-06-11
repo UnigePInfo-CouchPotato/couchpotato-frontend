@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Movie } from 'src/app/interfaces/api-responses/types/movie';
 
 /** Displays a movie element */
 @Component({
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./movie-display.component.scss']
 })
 export class MovieDisplayComponent {
+  @Input() movie: Movie;
+
   /** Creates an instance of MovieDisplayComponent. */
   constructor() { }
 }

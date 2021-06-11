@@ -2,13 +2,13 @@
   <div class="my-auto d-flex flex-column justify-content-center align-items-stretch">
     <div class="col-md-12 d-flex flex-column justify-content-center align-items-stretch">
       <div class="d-flex justify-content-center my-4">
-        <div class="app-title text-center card unselectable my-4">COUCHPOTATO</div>
+        <img class="img-thumb img-thumb-smaller" src="assets/images/main-logo.svg" alt="Our solution"/>
       </div>
       <ng-container *ngIf="this.userAuthenticated; else notAuthenticatedTemplate">
         <div class="d-flex authentication-container py-2 mb-4">
           <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-            <div class="welcome-text mb-4">Welcome back to <strong><em><span>CouchPotato!</span></em></strong></div>
-            <div class="btn btn-primary unselectable" (click)="goToRooms()">Get started</div>
+            <div class="welcome-text mb-4 text-center">Welcome back to <strong><em><span>CouchPotato!</span></em></strong></div>
+            <div class="btn btn-primary unselectable mb-4" (click)="goToRooms()">Get started</div>
           </div>
           <div class="col-md-6">
             <app-profile [showError]="this.showError"></app-profile>
@@ -18,7 +18,7 @@
       <ng-template #notAuthenticatedTemplate>
         <div class="d-flex not-authentication-container flex-row mb-4 py-2">
           <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-            <div class="welcome-text">Welcome to <strong><em><span>CouchPotato!</span></em></strong></div>
+            <div class="welcome-text mb-4 text-center">Welcome to <strong><em><span>CouchPotato!</span></em></strong></div>
           </div>
           <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
             <div class="service-text mb-4">To be able to use the service, you need to create an account or login*.</div>
@@ -49,7 +49,7 @@
           </div>
           <div class="starts-hidden description-row d-flex flex-row flipped" animateOnScroll animationName="animate-show fade-right">
             <div class="description-image col-md-4 d-flex justify-content-center align-items-center">
-              <img class="img-thumb" src="assets/images/video-2.gif" alt="Our solution"/>
+              <img class="img-thumb" src="assets/images/video-2.gif" alt="Service" />
             </div>
             <div class="description-text col-md-8">
               <div class="d-flex flex-row justify-content-center">
@@ -69,7 +69,9 @@
               <p>The movie with the most votes is then the one that you will watch.</p>
               <p>(And if it doesn't work out, just blame the algorithm!)</p>
             </div>
-            <div class="description-image col-md-4">aaa</div>
+            <div class="description-image col-md-4">
+              <img class="img-thumb" src="assets/images/pic-3.png" alt="Blob"/>
+            </div>
           </div>
         </div>
       </div>

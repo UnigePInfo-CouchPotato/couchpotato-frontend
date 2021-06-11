@@ -1,6 +1,5 @@
-export interface UserPreferences {
-  preferences: number[];
-}
+import { UserPreferences } from './auth0-user-preferences';
+
 export interface Auth0User {
   /** Client ID as provided by the platform. */
   aud: string;

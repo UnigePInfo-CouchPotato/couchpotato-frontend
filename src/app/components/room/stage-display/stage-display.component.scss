@@ -1,0 +1,26 @@
+.fa-star, .fa-minus {
+  font-size: larger;
+}
+
+.fa-star.color-admin {
+  color: lightblue
+}
+
+.fa-star:not(.color-admin), .fa-minus {
+  color: rgb(255, 81, 0)
+}
+
+.star-container {
+  background-color: rgb(41, 0, 80);
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+.description {
+  font-size: larger;
+  font-weight: 700;
+
+  .description-head {
+    text-decoration: underline;
+  }
+}
