@@ -22,7 +22,7 @@ jobs:
     - npm -v
     - npm install
     - npm update
-    - npm run-script build --prod
+    - npm run-script build -- --prod
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker build -t couchpotato-frontend/web-ui:latest .
     - docker tag couchpotato-frontend/web-ui faysalsaber/web-ui:latest
