@@ -1,0 +1,28 @@
+
+.btn {
+  font-size: larger !important;
+  text-transform: uppercase;
+}
+
+label {
+  text-align: center;
+  font-size: large;
+  font-weight: 700;
+}
+
+.separator {
+  width: 1px;
+  min-width: 1px;
+  background-color: rgb(218, 0, 152);
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .choice-column {
+    flex-direction: column !important;
+  }
+
+  .choice-column:first-child {
+    margin-bottom: 15px;
+  }
+}

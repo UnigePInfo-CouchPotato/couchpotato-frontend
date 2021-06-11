@@ -1,7 +1,8 @@
-import { WindowScrollService } from './../../services/window-scroll.service';
+import { WindowScrollService } from '../../services/ui-services/window-scroll.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 /** Component used to create rooms or join them. */
 @Component({
@@ -14,12 +15,15 @@ export class HomeComponent implements OnInit {
 
   showButton: boolean = false;
 
+  showError: boolean = false;
+
   info: BehaviorSubject<object> = new BehaviorSubject(null);
 
   /** Creates an instance of HomeComponent. */
   constructor(private authService: AuthenticationService,
               private scrollService: WindowScrollService,
-              private ref: ChangeDetectorRef) { }
+              private ref: ChangeDetectorRef,
+              private router: Router) { }
 
   /** On instantiation. */
   ngOnInit(): void {
@@ -40,5 +44,21 @@ export class HomeComponent implements OnInit {
   scrollToTop(): void {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  }
+
+  goToRooms(): void {
+    if (this.authService.preferences.length == 0) {
+      this.showError = true;
+    } else {
+      this.router.navigateByUrl('/room');
+    }
+  }
+
+  goToLogin(): void {
+    this.router.navigateByUrl('/authentication?action=login');
+  }
+
+  goToRegister(): void {
+    this.router.navigateByUrl('/authentication?action=register');
   }
 }

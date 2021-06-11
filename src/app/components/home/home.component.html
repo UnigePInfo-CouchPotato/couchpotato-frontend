@@ -2,30 +2,43 @@
   <div class="my-auto d-flex flex-column justify-content-center align-items-stretch">
     <div class="col-md-12 d-flex flex-column justify-content-center align-items-stretch">
       <div class="d-flex justify-content-center my-4">
-        <div class="app-title text-center card unselectable my-4">COUCHPOTATO</div>
+        <img class="img-thumb img-thumb-smaller" src="assets/images/main-logo.svg" alt="Our solution"/>
       </div>
       <ng-container *ngIf="this.userAuthenticated; else notAuthenticatedTemplate">
-        <div class="d-flex authentication-container py-2">
-          <div class="col-md-6  d-flex flex-column  justify-content-center align-items-center">
-              <div>Welcome back to CouchPotato</div>
-              <div class="btn btn-primary unselectable">Get started</div>
+        <div class="d-flex authentication-container py-2 mb-4">
+          <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="welcome-text mb-4 text-center">Welcome back to <strong><em><span>CouchPotato!</span></em></strong></div>
+            <div class="btn btn-primary unselectable mb-4" (click)="goToRooms()">Get started</div>
           </div>
           <div class="col-md-6">
-            <app-profile></app-profile>
+            <app-profile [showError]="this.showError"></app-profile>
           </div>
         </div>
       </ng-container>
       <ng-template #notAuthenticatedTemplate>
-        <div class="d-flex flex-row">
-          <div class="col-md-6">Welcome to!</div>
-          <div class="col-md-6">Login / Register</div>
+        <div class="d-flex not-authentication-container flex-row mb-4 py-2">
+          <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="welcome-text mb-4 text-center">Welcome to <strong><em><span>CouchPotato!</span></em></strong></div>
+          </div>
+          <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="service-text mb-4">To be able to use the service, you need to create an account or login*.</div>
+            <div class="w-75 mb-4 d-flex flex-row justify-content-around">
+              <div class="btn btn-primary unselectable" (click)="goToRegister()">Sign up</div>
+              <div class="btn btn-primary unselectable" (click)="goToLogin()">Log in</div>
+            </div>
+
+            <div class="small">*uses the <a href="https://auth0.com" rel="noreferrer noopener">auth0</a> platform.</div>
+          </div>
         </div>
       </ng-template>
 
       <div class="w-100 app-description">
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column description-column">
           <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-left">
             <div class="description-text col-md-8">
+              <div class="d-flex flex-row justify-content-center">
+                <h2 class="left">A problem in the (film-)making</h2>
+              </div>
               <p>Have you ever been to a pajama party? Or just a party with some friends? Have you ever <span class="highlight">been stuck</span> thinking of a movie for you to look at? Or <span class="highlight">fought</span> about what to view next?</p>
               <br/>
               <p>You are not alone!</p>
@@ -34,24 +47,31 @@
               <img class="img-thumb" src="assets/images/pic-1.svg" alt="Our solution"/>
             </div>
           </div>
-          <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-right">
+          <div class="starts-hidden description-row d-flex flex-row flipped" animateOnScroll animationName="animate-show fade-right">
             <div class="description-image col-md-4 d-flex justify-content-center align-items-center">
-              <img class="img-thumb" src="assets/images/video-2.gif" alt="Our solution"/>
+              <img class="img-thumb" src="assets/images/video-2.gif" alt="Service" />
             </div>
             <div class="description-text col-md-8">
-              <h2>Our solution</h2>
+              <div class="d-flex flex-row justify-content-center">
+                <h2 class="right">Our solution</h2>
+              </div>
               <p>Our team has devised a way to minimize conflict while searching for a movie and offers you <span class="highlight">"CouchPotato"</span>.</p>
               <p>This free service assists you in choosing a movie to watch when among friends, but also makes it into an event <span class="highlight">everyone can enjoy</span>.</p>
             </div>
           </div>
           <div class="starts-hidden description-row d-flex flex-row" animateOnScroll animationName="animate-show fade-left">
             <div class="description-text col-md-8">
-              <h2>How does it work?</h2>
+
+              <div class="d-flex flex-row justify-content-center">
+                <h2 class="left">How does it work?</h2>
+              </div>
               <p>All you need to do is specify what movie genres you like, join a viewing room, and then vote on the recommended movie that looks the most interesting.</p>
               <p>The movie with the most votes is then the one that you will watch.</p>
               <p>(And if it doesn't work out, just blame the algorithm!)</p>
             </div>
-            <div class="description-image col-md-4">aaa</div>
+            <div class="description-image col-md-4">
+              <img class="img-thumb" src="assets/images/pic-3.png" alt="Blob"/>
+            </div>
           </div>
         </div>
       </div>

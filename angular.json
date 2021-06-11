@@ -69,8 +69,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "couchpotato-frontend:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "couchpotato-frontend:build"
           },
           "configurations": {
             "production": {

@@ -10,12 +10,6 @@
   padding: .5rem !important;
 }
 
-
-.page-container {
-  width: 50%;
-}
-@media screen and (max-width: 768px) {
-  .page-container {
-    width: 95%;
-  }
+.c {
+  min-height: 100vh;
 }

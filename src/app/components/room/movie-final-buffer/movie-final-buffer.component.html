@@ -1,0 +1,15 @@
+<app-room-main>
+  <div class="w-100 d-flex flex-row justify-content-center align-items-center h-100">
+    <div class="w-100 h-100 col-12 d-flex flex-column justify-content-around align-items-center">
+      <div>Waiting on votes to finish.</div>
+
+      <div class="btn btn-primary" *ngIf="this.isAdmin" (click)="this.endVote()">Close votes</div>
+
+      <div *ngIf="this.showError" class="alert alert-danger py-2 px-3">{{ this.errorText }}</div>
+      <div *ngIf="this.showLoading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+</app-room-main>
